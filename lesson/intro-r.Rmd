@@ -1,19 +1,26 @@
 ---
-title: "Introduction to R"
-author: "Andrew Borgman"
 date: 
 output: 
   html_document:
     theme: readable
 ---
 
-
-```{r, echo=FALSE, message=FALSE, eval=TRUE}
+```{r config, echo=FALSE, message=FALSE, eval=TRUE}
 library(knitr)
 opts_chunk$set(results="hide", message=FALSE, fig.show="hide", fig.keep="none", tidy=TRUE)
 ```
 
-# Disclaimer & Resources
+# Introduction to R
+
+#### Andrew Borgman // VARI BBC
+
+-----
+
+
+## Disclaimer & Resources
+
+#### Document is still a work in progess
+
 
 One of the greatest things about `R` is the vibrant community supporting it. One can find endless tutorials, books, presentations, etc. on just about any aspect of `R` you want.  
 

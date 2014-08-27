@@ -1,24 +1,32 @@
 ---
-title: "Introduction to R"
-author: "Andrew Borgman"
 output: 
   html_document:
     theme: readable
 ---
 
+# Introduction to R
 
-### Background
-
-The Bioinformatics and Biostatistics Core will present the inaugural Core Services Special Topics seminar at noon on Sept. 8 in conference rooms 2101 and 2102. The seminar is entitled *Introduction to R*. Participants should bring a laptop with [R](http://www.r-project.org/) & [RStudio](http://www.rstudio.com/) installed (if you need help installing, please see a Bioinformatics and Biostatistics staff member).
-
-
-### Installing R & RStudio
+#### Andrew Borgman // VARI BBC
 
 
-* `R` downloads for [Windows](http://cran.r-project.org/bin/windows/base/) & [OS X](http://cran.r-project.org/bin/macosx/)
-* [RStudio downloads for all platforms](http://www.rstudio.com/products/rstudio/download/)
+-----
 
-### Course Materials
+## Background
+
+The Bioinformatics and Biostatistics Core will present the inaugural Core Services Special Topics seminar at noon on Sept. 8 in conference rooms 2101 and 2102. The seminar is entitled *Introduction to R*. **Participants must bring a laptop with [R](http://www.r-project.org/) & [RStudio](http://www.rstudio.com/) installed (if you need help installing, please see a Bioinformatics and Biostatistics staff member)**.
+
+
+-----
+
+## Installing R & RStudio
+
+
+* **Installing R:** See `R` downloads for [Windows](http://cran.r-project.org/bin/windows/base/) & [OS X](http://cran.r-project.org/bin/macosx/)
+* **Installing RStudio:** [RStudio downloads for all platforms](http://www.rstudio.com/products/rstudio/download/)
+
+-----
+
+## Course Materials
 
 * [Intro R cheatsheet](http://borgmaan.github.io/r-intro/cheatsheet/intro-r-cheatsheet.html)
 * [Course Handout](http://borgmaan.github.io/r-intro/lesson/intro-r.html)

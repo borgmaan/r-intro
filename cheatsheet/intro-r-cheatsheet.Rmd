@@ -1,13 +1,16 @@
 ---
-title: "R Cheatsheet"
-author: "Andrew Borgman"
 output: 
   html_document:
     theme: readable
 ---
 
+# Intro R Cheatsheet
 
-### Basics
+#### Andrew Borgman // VARI BBC
+
+-----
+
+### Some Basics
 
 
 | Command   | Description  |
