@@ -1,6 +1,6 @@
 ---
 title: "Introduction to R"
-author: "Andrew Borgman"
+author: "Andrew Borgman // VARI BBC"
 date: 
 output: 
   html_document:
@@ -13,21 +13,17 @@ library(knitr)
 opts_chunk$set(results="hide", message=FALSE, fig.show="hide", fig.keep="none", tidy=TRUE)
 ```
 
-
-
-#### Andrew Borgman // VARI BBC
-
 -----
 
 
 # Disclaimer 
 
-#### *Document is still a work in progess*
+## *Document is still a work in progress*
 
 
 # External Resources
 
-One of the greatest things about `R` is the vibrant community supporting it. One can find endless tutorials, books, presentations, etc. on just about any aspect of `R` you want -- from beginner topics to advances matters. Once you have some familiarity with `R`, you'll be able to "Google your way out" of most problems you run into. 
+One of the greatest things about `R` is the vibrant community supporting it. One can find endless tutorials, books, presentations, etc. on just about any aspect of `R` you want -- from beginner topics to advances matters. Once you have some familiarity with `R`, you'll be able to "Google your way out" of most problems you run into. Here's a small list of useful resources:
 
 * [RStudio provides many online learning resources](http://www.rstudio.com/resources/training/online-learning/)
 * [And even more helpful links buried in an RStudio wiki page](https://support.rstudio.com/hc/en-us/articles/200552336-Getting-Help-with-R)
@@ -36,34 +32,22 @@ One of the greatest things about `R` is the vibrant community supporting it. One
 * [Google Developers intro to R video tutorials](https://www.youtube.com/watch?v=iffR3fWv4xw&list=PLOU2XLYxmsIK9qQfztXeybpHvru-TrqAP)
 
 
-# Breif Intro To RStudio
+# Brief Intro To RStudio
 
 *Some materials adapted from here[http://dss.princeton.edu/training/RStudio101.pdf]*
 
-[Toss some notes in herea bout R ...]
+* Show workspace layout
+    - Introduce R console
+    - introduce ideas of scripts
+* Show how to load data without using `read.table()`
+* Show how to change directory without using `getwd()`
+    - also introduce to working directory
+* Show how to install packages without `install.packages()`
+* 
 
+# R Calculator
 
-
-
-
-
-# R Data Types
-
-
-
-
-
-
-
-
-
-## R basics
-
-The first part of this workshop will demonstrate very basic functionality in R, including functions, functions, vectors, creating variables, getting help, subsetting, data frames, plotting, and reading/writing files.
-
-### Basic operations
-
-R can be used as a glorified calculator. Try typing this in directly into the console. Then start typing this into the editor, and save your script. Use the run button, or press `CMD`+`Enter` (`Ctrl`+`Enter` on Windows).
+Perhaps in it's most basic form, `R` can be used as a glorified calculator. Enter the following commands into your `R` console or send them to the console from a script with CMD+Enter on OS X or Ctrl+Enter on Windows.
 
 ```{r}
 2+2
@@ -71,11 +55,30 @@ R can be used as a glorified calculator. Try typing this in directly into the co
 2^3
 ```
 
-R Knows order of operations.
+It is also smart enough to understand order of operations :)
 
 ```{r}
 2+3*4/(5+3)*15/2^2+3*4^2
 ```
+
+# R Data Types
+
+In addition to knowing about numbers, `R` knows about a lot of others things too. 
+
+### Strings/Words/Characters
+
+```{r}
+
+
+
+```
+
+
+# Assignment/Variables
+
+
+
+
 
 ### Functions
 
@@ -191,11 +194,9 @@ length(x)
 Let's create and manipulate a character vector:
 
 ```{r}
-y <- c("My", "name", "is", "Stephen")
 y
 class(y)
 length(y)
-y <- c(y, "Turner")
 y
 length(y)
 ```
