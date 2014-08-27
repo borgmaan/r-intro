@@ -23,12 +23,6 @@ One of the greatest things about `R` is the vibrant community supporting it. One
 
 
 
-[Link to R Cheat Sheet](http://dx.doi.org/10.6084/m9.figshare.1080756).
-
-
-## Before coming
-
-
 ## R basics
 
 The first part of this workshop will demonstrate very basic functionality in R, including functions, functions, vectors, creating variables, getting help, subsetting, data frames, plotting, and reading/writing files.
@@ -135,7 +129,6 @@ You can see what objects (variables) are stored by viewing the Environment tab i
 ls()
 rm(x)
 ls()
-x # oops! you should get an error because x no longer exists!
 rm(y,z)
 ```
 
@@ -149,16 +142,6 @@ class(log)
 name <- "Stephen"
 name
 class(name)
-```
-
-Certain *functions* operate only on certain *classes* of object. Here, `name` is a `character` class, assigned to `"Stephen"`. The built-in `toupper()` function will operate on character objects, but not others.
-
-```{r}
-# name is an object of class character. methods or functions are associated with
-# certain classes.
-toupper(name)
-# can't run a function that expects character on an object of class function
-toupper(log)
 ```
 
 We can combine values into a vector with the built-in `c()` function.
@@ -200,10 +183,6 @@ class(z)
 
 Certain functions only operate on certain classes. You can't compute the `sum()` of a character vector!
 
-```{r}
-z
-sum(z)
-```
 
 ### Slicing/indexing vectors
 
@@ -454,107 +433,3 @@ data(pasillaGenes)
 write.csv(counts(pasillaGenes), file="pasilla_counts.csv")
 write.csv(pData(pasillaGenes)[, c("condition", "type")], file="pasilla_metadata.csv")
 ```
-
-### Analyzing publicly available RNA-seq data
-
-Now, let's analyze some publicly available gene expression (RNA-seq) data. NCBI Gene Expression Omnibus (<http://www.ncbi.nlm.nih.gov/geo/>) is an international public repository that archives and freely distributes microarray, next-generation sequencing, and other forms of high-throughput functional genomics data submitted by the research community. Many publishers require gene expression data be submitted to GEO and made publicly available before publication. You can learn a lot more about GEO by reading their [overview](http://www.ncbi.nlm.nih.gov/geo/info/overview.html) and [FAQ](http://www.ncbi.nlm.nih.gov/geo/info/faq.html) pages. At the time of this writing, GEO hosts over 45,000 studies comprising over 1,000,000 samples on over 10,000 different technology platforms.
-
-In this demonstration, we're going to be using data from GEO Series accession number GSE18508. You can enter this number in the search box on the GEO homepage, or use [this direct link](http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE18508). In this study, the authors performed RNA-sequencing of mRNA from *Drosophila melanogaster* S2-DRSC cells that have been RNAi depleted of mRNAs encoding RNA binding proteins and splicing factors. This was done as part of the modENCODE project, published in: Brooks AN et al. Conservation of an RNA regulatory map between Drosophila and mammals. *Genome Res* 2011 Feb;21(2):193-202.
-
-You can go to the [GEO accession page](http://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE18508) and download all the raw data at the bottom under supplementary data. However, this dataset is nearly 100GB. What I have in this repository is a spreadsheet containing a matrix of gene counts, where genes are in rows and samples are in columns. That is, this data has already been aligned and counted, and the number in the cell is the number of RNA-seq reads that mapped to that gene for that sample. The value in the *i*-th row and the *j*-th column of the matrix tells how many reads have been mapped to gene *i* in sample *j*. To do these steps yourself, you would need to align reads to the genome (e.g., using [STAR](https://code.google.com/p/rna-star/)) and count reads mapping to features (e.g., using a GTF file from Ensembl and a tool like [featureCounts](http://bioinf.wehi.edu.au/featureCounts/))
-
-Note: much of this was adapted from the [DESeq2 package vignette](http://www.bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.pdf).
-
-#### Load packages and set working directory
-
-First, we'll need to load the Bioconductor packages we'll be using:
-
-```{r}
-# Bioconductor packages.
-# Use the installation instructions at http://www.bioconductor.org/install/
-# If you haven't already installed these (install once, load every time)
-library(Biobase)
-library(DESeq2)
-```
-
-Next, you'll need to set your working directory (folder) to the `lessons/intro-r-lifesci` subdirectory wherever you saved and extracted the [code repository for this lesson](https://github.com/bioconnector/workshops/archive/master.zip). This way, you can reference the data using a *relative path* (e.g. `data/pasilla_counts.csv`) instead of an *absolute path* (e.g. `C:/Users/name/downloads/workshops/lessons/data/pasilla_counts.csv`). You can do this either through the RStudio graphical menu (Session, Set Working Directory, Choose...), or through the `setwd()` function. You can check where you are with `getwd()`.
-
-```{r}
-getwd()
-```
-
-#### Load the data
-
-Next, load two different datasets: one with the count data, and one with sample information. Take a look at the first few rows of the count dataset, as well as the entire metadata data frame.
-
-```{r}
-# Load the count data
-pasillacounts <- read.csv("data/pasilla_counts.csv", header=TRUE, row.names=1)
-head(pasillacounts)
-
-# Load the sample metadata
-pasillameta <- read.csv("data/pasilla_metadata.csv", header=TRUE, row.names=1)
-pasillameta
-```
-
-The class used by the DESeq2 package to store the read counts is the **DESeqDataSet** class. This facilitates preparation steps andalso downstream exploration of results. A DESeqDataSet object must have an associated design formula. The design formula expresses the variables which will be used in modeling. The formula should be a tilde (~) followed by the variables with plus signs between them (it will be coerced into an formula if it is not already). An intercept is included, representing the base mean of counts. The design can be changed later, however then all differential analysis steps should be repeated, as the design formula is used to estimate the dispersions and to estimate the log2 fold changes of the model. Do do this, we run the `DESeqDataSetFromMatrix` function, giving it data frames containing the count matrix as well as the column (metadata) information, and the design formula.
-
-```{r}
-dds <- DESeqDataSetFromMatrix(countData=pasillacounts, colData=pasillameta, design = ~condition)
-dds
-```
-
-#### Differential expression analysis
-
-The standard differential expression analysis steps are wrapped into a single function, `DESeq`. This convenience function normalizes the library, estimates dispersion, and performs a statistical test under the negative binomial model.
-
-```{r}
-# Normalize, estimate dispersion, fit model
-dds <- DESeq(dds)
-```
-
-The results are accessed using the function `results`. The `mcols` function gives you more information about what the columns in the results tell you. You can reorder and write the results to a file if you wish. Finally, you can create an MA-plot, showing the log2 fold change over the normalized counts for each gene, colored red if statistically significant (padj<0.1).
-
-```{r}
-# Extract results
-res <- results(dds)
-
-# View, reorder, and write out results
-head(res)
-mcols(res)
-res <- res[order(res$padj), ]
-head(res)
-write.csv(res, file="results/pasilla_results.csv")
-
-# Create MA Plot
-plotMA(dds, ylim=c(-2,2))
-```
-
-#### Data transformation and visualization
-
-The differential expression analysis above operates on the raw (normalized) count data. But for visualizing or clustering data as you would with a microarray experiment, you ned to work with transformed versions of the data. First, use a *regularlized log* transofmration while re-estimating the dispersion ignoring any information you have about the samples (`blind=TRUE`). Perform a principal components analysis and hierarchical clustering.
-
-```{r}
-# Transform
-rld <- rlogTransformation(dds, blind=TRUE)
-
-# Principal components analysis
-plotPCA(rld, intgroup=c("condition", "type"))
-
-# Hierarchical clustering analysis
-distrl <- dist(t(assay(rld)))
-plot(hclust(distrl))
-```
-
-#### Multifactor design
-
-See the [DESeq2 vignette](http://www.bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.pdf) for more information on multifactor designs.
-
-#### Record package and version info with `sessionInfo()`
-
-The `sessionInfo()` prints version information about R and any attached packages. It's a good practice to always run this command at the end of your R session and record it for the sake of reproducibility in the future.
-
-```{r, results='markup'}
-sessionInfo()
-```
-Status API Training Shop Blog About © 2014 GitHub, Inc. Terms Privacy Security Contact 

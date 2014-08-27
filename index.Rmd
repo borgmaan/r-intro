@@ -1,5 +1,5 @@
 ---
-title: "Introduction to `R`"
+title: "Introduction to R"
 author: "Andrew Borgman"
 output: 
   html_document:
@@ -21,4 +21,4 @@ The Bioinformatics and Biostatistics Core will present the inaugural Core Servic
 ### Course Materials
 
 * [Intro R cheatsheet](http://borgmaan.github.io/r-intro/cheatsheet/intro-r-cheatsheet.html)
-* 
+* [Course Handout](http://borgmaan.github.io/r-intro/lesson/intro-r.html)
