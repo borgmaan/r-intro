@@ -9,7 +9,7 @@ output:
 
 ### Background
 
-The Bioinformatics and Biostatistics Core will present the inaugural Core Services Special Topics seminar at noon on Sept. 8 in conference rooms 2101 and 2102. The seminar is entitled *Introduction to `R`*. Participants should bring a laptop with [R](http://www.r-project.org/) & [RStudio](http://www.rstudio.com/) installed (if you need help installing, please see a Bioinformatics and Biostatistics staff member).
+The Bioinformatics and Biostatistics Core will present the inaugural Core Services Special Topics seminar at noon on Sept. 8 in conference rooms 2101 and 2102. The seminar is entitled *Introduction to R*. Participants should bring a laptop with [R](http://www.r-project.org/) & [RStudio](http://www.rstudio.com/) installed (if you need help installing, please see a Bioinformatics and Biostatistics staff member).
 
 
 ### Installing R & RStudio
@@ -20,3 +20,5 @@ The Bioinformatics and Biostatistics Core will present the inaugural Core Servic
 
 ### Course Materials
 
+* [Intro R cheatsheet](http://borgmaan.github.io/r-intro/cheatsheet/intro-r-cheatsheet.html)
+* 
