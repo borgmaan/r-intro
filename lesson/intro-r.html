@@ -6,10 +6,9 @@
 
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Style-Type" content="text/css" />
 <meta name="generator" content="pandoc" />
 
-<meta name="author" content="Andrew Borgman" />
+<meta name="author" content="Andrew Borgman // VARI BBC" />
 
 
 <title>Introduction to R</title>
@@ -54,18 +53,21 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 
 <div id="header">
 <h1 class="title">Introduction to R</h1>
-<h4 class="author"><em>Andrew Borgman</em></h4>
+<h4 class="author"><em>Andrew Borgman // VARI BBC</em></h4>
 </div>
 
 <div id="TOC">
 <ul>
-<li><a href="#disclaimer">Disclaimer</a></li>
+<li><a href="#disclaimer">Disclaimer</a><ul>
+<li><a href="#document-is-still-a-work-in-progress"><em>Document is still a work in progress</em></a></li>
+</ul></li>
 <li><a href="#external-resources">External Resources</a></li>
-<li><a href="#breif-intro-to-rstudio">Breif Intro To RStudio</a></li>
-<li><a href="#intro-to-your-file-system">Intro to Your File System</a></li>
+<li><a href="#brief-intro-to-rstudio">Brief Intro To RStudio</a></li>
+<li><a href="#r-calculator">R Calculator</a></li>
 <li><a href="#r-data-types">R Data Types</a><ul>
-<li><a href="#r-basics">R basics</a><ul>
-<li><a href="#basic-operations">Basic operations</a></li>
+<li><a href="#stringswordscharacters">Strings/Words/Characters</a></li>
+</ul></li>
+<li><a href="#assignmentvariables">Assignment/Variables</a><ul>
 <li><a href="#functions">Functions</a></li>
 <li><a href="#vectors">Vectors</a></li>
 <li><a href="#variables-objects">Variables / objects</a></li>
@@ -74,7 +76,6 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <li><a href="#data-frames">Data Frames</a></li>
 <li><a href="#plotting">Plotting</a></li>
 <li><a href="#reading-in-writing-out-data">Reading in / writing out data</a></li>
-</ul></li>
 <li><a href="#using-r-and-bioconductor-for-gene-expression-analysis">Using R and Bioconductor for gene expression analysis</a><ul>
 <li><a href="#packages">Packages</a></li>
 <li><a href="#bioconductor">Bioconductor</a></li>
@@ -83,19 +84,16 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 </ul>
 </div>
 
-<div id="andrew-borgman-vari-bbc" class="section level4">
-<h4>Andrew Borgman // VARI BBC</h4>
 <hr />
-</div>
 <div id="disclaimer" class="section level1">
 <h1>Disclaimer</h1>
-<div id="document-is-still-a-work-in-progess" class="section level4">
-<h4><em>Document is still a work in progess</em></h4>
+<div id="document-is-still-a-work-in-progress" class="section level2">
+<h2><em>Document is still a work in progress</em></h2>
 </div>
 </div>
 <div id="external-resources" class="section level1">
 <h1>External Resources</h1>
-<p>One of the greatest things about <code>R</code> is the vibrant community supporting it. One can find endless tutorials, books, presentations, etc. on just about any aspect of <code>R</code> you want – from beginner topics to advances matters. Once you have some familiarity with <code>R</code>, you’ll be able to “Google your way out” of most problems you run into.</p>
+<p>One of the greatest things about <code>R</code> is the vibrant community supporting it. One can find endless tutorials, books, presentations, etc. on just about any aspect of <code>R</code> you want – from beginner topics to advances matters. Once you have some familiarity with <code>R</code>, you’ll be able to “Google your way out” of most problems you run into. Here’s a small list of useful resources:</p>
 <ul>
 <li><a href="http://www.rstudio.com/resources/training/online-learning/">RStudio provides many online learning resources</a></li>
 <li><a href="https://support.rstudio.com/hc/en-us/articles/200552336-Getting-Help-with-R">And even more helpful links buried in an RStudio wiki page</a></li>
@@ -104,28 +102,42 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <li><a href="https://www.youtube.com/watch?v=iffR3fWv4xw&amp;list=PLOU2XLYxmsIK9qQfztXeybpHvru-TrqAP">Google Developers intro to R video tutorials</a></li>
 </ul>
 </div>
-<div id="breif-intro-to-rstudio" class="section level1">
-<h1>Breif Intro To RStudio</h1>
-<p><em>Some materials adapted from here[<a href="http://dss.princeton.edu/training/RStudio101.pdf">http://dss.princeton.edu/training/RStudio101.pdf</a>]</em></p>
-<p>[Toss some notes in herea bout R …]</p>
+<div id="brief-intro-to-rstudio" class="section level1">
+<h1>Brief Intro To RStudio</h1>
+<p><em>Some materials adapted from here[<a href="http://dss.princeton.edu/training/RStudio101.pdf" class="uri">http://dss.princeton.edu/training/RStudio101.pdf</a>]</em></p>
+<ul>
+<li>Show workspace layout
+<ul>
+<li>Introduce R console</li>
+<li>introduce ideas of scripts</li>
+</ul></li>
+<li>Show how to load data without using <code>read.table()</code></li>
+<li>Show how to change directory without using <code>getwd()</code>
+<ul>
+<li>also introduce to working directory</li>
+</ul></li>
+<li>Show how to install packages without <code>install.packages()</code></li>
+<li></li>
+</ul>
 </div>
-<div id="intro-to-your-file-system" class="section level1">
-<h1>Intro to Your File System</h1>
-</div>
-<div id="r-data-types" class="section level1">
-<h1>R Data Types</h1>
-<div id="r-basics" class="section level2">
-<h2>R basics</h2>
-<p>The first part of this workshop will demonstrate very basic functionality in R, including functions, functions, vectors, creating variables, getting help, subsetting, data frames, plotting, and reading/writing files.</p>
-<div id="basic-operations" class="section level3">
-<h3>Basic operations</h3>
-<p>R can be used as a glorified calculator. Try typing this in directly into the console. Then start typing this into the editor, and save your script. Use the run button, or press <code>CMD</code>+<code>Enter</code> (<code>Ctrl</code>+<code>Enter</code> on Windows).</p>
+<div id="r-calculator" class="section level1">
+<h1>R Calculator</h1>
+<p>Perhaps in it’s most basic form, <code>R</code> can be used as a glorified calculator. Enter the following commands into your <code>R</code> console or send them to the console from a script with CMD+Enter on OS X or Ctrl+Enter on Windows.</p>
 <pre class="r"><code>2 + 2
 5 * 4
 2^3</code></pre>
-<p>R Knows order of operations.</p>
+<p>It is also smart enough to understand order of operations :)</p>
 <pre class="r"><code>2 + 3 * 4/(5 + 3) * 15/2^2 + 3 * 4^2</code></pre>
 </div>
+<div id="r-data-types" class="section level1">
+<h1>R Data Types</h1>
+<p>In addition to knowing about numbers, <code>R</code> knows about a lot of others things too.</p>
+<div id="stringswordscharacters" class="section level3">
+<h3>Strings/Words/Characters</h3>
+</div>
+</div>
+<div id="assignmentvariables" class="section level1">
+<h1>Assignment/Variables</h1>
 <div id="functions" class="section level3">
 <h3>Functions</h3>
 <p>R has built-in functions.</p>
@@ -202,20 +214,9 @@ x
 class(x)
 length(x)</code></pre>
 <p>Let’s create and manipulate a character vector:</p>
-<pre class="r"><code>y &lt;- c(&quot;My&quot;, &quot;name&quot;, &quot;is&quot;, &quot;Stephen&quot;)
-y
-class(y)
-length(y)
-y &lt;- c(y, &quot;Turner&quot;)
-y
-length(y)</code></pre>
 <p>Try running the built-in <code>sum()</code> function on a numeric vector:</p>
 <pre class="r"><code>sum(x)</code></pre>
 <p>Combining characters with numerics results in coercing everything to be a character class.</p>
-<pre class="r"><code>y
-z &lt;- c(x, y)
-z
-class(z)</code></pre>
 <p>Certain functions only operate on certain classes. You can’t compute the <code>sum()</code> of a character vector!</p>
 </div>
 <div id="slicingindexing-vectors" class="section level3">
@@ -333,13 +334,12 @@ rm(cars8)
 cars8 &lt;- read.csv(file = &quot;cars8.csv&quot;, header = TRUE, row.names = 1)
 cars8</code></pre>
 </div>
-</div>
 <div id="using-r-and-bioconductor-for-gene-expression-analysis" class="section level2">
 <h2>Using R and Bioconductor for gene expression analysis</h2>
 <p>In this section we’ll analyze some publicly available gene expression data using R and bioinformatics-focused R packages in <a href="http://bioconductor.org/">Bioconductor</a>. But first, a bit about R <em>packages</em>.</p>
 <div id="packages" class="section level3">
 <h3>Packages</h3>
-<p>Most generic R packages are hosted on the Comprehensive R Archive Network (CRAN, <a href="http://cran.us.r-project.org/">http://cran.us.r-project.org/</a>). To install one of these packages, you would use <code>install.packages(&quot;packagename&quot;)</code>. You only need to install a package once, then load it each time using <code>library(packagename)</code>. Let’s install the <strong>ggplot2</strong> package, and load it.</p>
+<p>Most generic R packages are hosted on the Comprehensive R Archive Network (CRAN, <a href="http://cran.us.r-project.org/" class="uri">http://cran.us.r-project.org/</a>). To install one of these packages, you would use <code>install.packages(&quot;packagename&quot;)</code>. You only need to install a package once, then load it each time using <code>library(packagename)</code>. Let’s install the <strong>ggplot2</strong> package, and load it.</p>
 <pre class="r"><code># Install only once.
 install.packages(&quot;ggplot2&quot;)
 
@@ -348,7 +348,7 @@ library(ggplot2)</code></pre>
 </div>
 <div id="bioconductor" class="section level3">
 <h3>Bioconductor</h3>
-<p>Bioconductor packages work a bit different, and are not hosted on CRAN. Go to <a href="http://bioconductor.org/">http://bioconductor.org/</a> to learn more about the Bioconductor project. To use any Bioconductor package, you’ll need a few “core” Bioconductor packages. Run the following commands to (1) download the installer script, and (2) install some core Bioconductor packages. You’ll need internet connectivity to do this, and it’ll take a few minutes, but it only needs to be done once.</p>
+<p>Bioconductor packages work a bit different, and are not hosted on CRAN. Go to <a href="http://bioconductor.org/" class="uri">http://bioconductor.org/</a> to learn more about the Bioconductor project. To use any Bioconductor package, you’ll need a few “core” Bioconductor packages. Run the following commands to (1) download the installer script, and (2) install some core Bioconductor packages. You’ll need internet connectivity to do this, and it’ll take a few minutes, but it only needs to be done once.</p>
 <pre class="r"><code># Download the installer script
 source(&quot;http://bioconductor.org/biocLite.R&quot;)
 
@@ -380,12 +380,12 @@ $(document).ready(function () {
 
 </script>
 
-<!-- dynamically load mathjax for compatibility with --self-contained -->
+<!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

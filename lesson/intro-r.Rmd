@@ -193,13 +193,6 @@ length(x)
 
 Let's create and manipulate a character vector:
 
-```{r}
-y
-class(y)
-length(y)
-y
-length(y)
-```
 
 Try running the built-in `sum()` function on a numeric vector:
 
@@ -209,12 +202,6 @@ sum(x)
 
 Combining characters with numerics results in coercing everything to be a character class.
 
-```{r}
-y
-z <- c(x,y)
-z
-class(z)
-```
 
 Certain functions only operate on certain classes. You can't compute the `sum()` of a character vector!
 
