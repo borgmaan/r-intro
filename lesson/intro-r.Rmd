@@ -28,7 +28,6 @@ One of the greatest things about `R` is the vibrant community supporting it. One
 
 ## Before coming
 
-{% include setup-r.md %}
 
 ## R basics
 

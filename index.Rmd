@@ -1,0 +1,22 @@
+---
+title: "Introduction to `R`"
+author: "Andrew Borgman"
+output: 
+  html_document:
+    theme: readable
+---
+
+
+### Background
+
+The Bioinformatics and Biostatistics Core will present the inaugural Core Services Special Topics seminar at noon on Sept. 8 in conference rooms 2101 and 2102. The seminar is entitled *Introduction to `R`*. Participants should bring a laptop with [R](http://www.r-project.org/) & [RStudio](http://www.rstudio.com/) installed (if you need help installing, please see a Bioinformatics and Biostatistics staff member).
+
+
+### Installing R & RStudio
+
+
+* `R` downloads for [Windows](http://cran.r-project.org/bin/windows/base/) & [OS X](http://cran.r-project.org/bin/macosx/)
+* [RStudio downloads for all platforms](http://www.rstudio.com/products/rstudio/download/)
+
+### Course Materials
+
