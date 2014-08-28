@@ -56,7 +56,7 @@ RStudio has an *R* console running inside it:
 
 In it's most basic form, the *R* console can be used as a glorified calculator. Enter the following commands into your *R* console to see it in action.
 
-```
+```{r}
 2+2
 5*4
 2^3
@@ -64,7 +64,7 @@ In it's most basic form, the *R* console can be used as a glorified calculator. 
 
 It is also smart enough to understand order of operations:
 
-```
+```{r}
 2+3*4/(5+3)*15/2^2+3*4^2
 ```
 But *R* can be much more than just a calculator... :)
@@ -80,11 +80,11 @@ Objects in *R* are assigned to **variables**. Variables allow us to name *things
 
 Here's an example of assigning the number `3` to the variable name `x`:
 
-```
+```{r}
 x <- 3
 ```
 
-`<-` is known as the assignment operator in `R`. The code chunk above would be read "x is assigned the value of three". When you type the name of a variable that has been assigned a value, *R* will typically print the assigned value:
+`<-` is known as the assignment operator in *R*. The code chunk above would be read "x is assigned the value of three". When you type the name of a variable that has been assigned a value, *R* will typically print the assigned value:
 
 ```
 > x <- 3
@@ -132,6 +132,8 @@ And we'll be able to see some objects if we add them:
 [1] "x" "y" "z"
 ```
 
+
+**TODO: show how you can view the environment in RStudio**
 
 
 
