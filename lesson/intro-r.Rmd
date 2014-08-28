@@ -21,9 +21,12 @@ opts_chunk$set(results="hide", message=FALSE, fig.show="hide", fig.align="center
 ## *Document is still a work in progress*
 
 
+-----
+
+
 # External Resources
 
-One of the greatest things about `R` is the vibrant community supporting it. One can find endless tutorials, books, presentations, etc. on just about any aspect of `R` you want -- from beginner topics to advances matters. Once you have some familiarity with `R`, you'll be able to "Google your way out" of most problems you run into. Here's a small list of useful resources:
+Such a short tutorial cannot cover the vast *R* universe in much detail. Fortunately, one of the greatest things about *R* is the vibrant community supporting it. One can find endless tutorials, books, presentations, etc. on just about any aspect of *R* you want -- from beginner topics to advances matters. Once you have some familiarity with *R*, you'll be able to "Google your way out" of most problems you run into. Here's a small list of useful resources:
 
 * [RStudio provides many online learning resources](http://www.rstudio.com/resources/training/online-learning/)
 * [And even more helpful links buried in an RStudio wiki page](https://support.rstudio.com/hc/en-us/articles/200552336-Getting-Help-with-R)
@@ -32,31 +35,28 @@ One of the greatest things about `R` is the vibrant community supporting it. One
 * [Google Developers intro to R video tutorials](https://www.youtube.com/watch?v=iffR3fWv4xw&list=PLOU2XLYxmsIK9qQfztXeybpHvru-TrqAP)
 
 
+-----
+
+
 # Brief Intro To RStudio & R Concepts
 
-### The R Console & Workspace
+### The R Console
 
-`R` was developed as an *interactive* computing language. This means users enter commands into the machine line-by-line to produce a result. `R`'s original purpose was to allow researchers at Bell Labs interact with and analyze their data. The `R` console can be accessed in a number of ways:
+*R* was initially developed to be an *interactive* computing language -- meaning users manually enter commands into an *R* *console* to produce a result. Interactive computing is a great way to investigate data sets and perform [exploratory data analysis](http://en.wikipedia.org/wiki/Exploratory_data_analysis). This is one of the main reasons for *R*'s popularity in the scientific community. 
 
-From a command prompt/terminal:
+The *R* console can be accessed in a number of ways:
+
+1. From a command prompt/terminal:
 
 ![cmd-term](images/old-r-console.png)
 
-From the `R` GUI distribution downloaded with `R`:
+2. From the *R* GUI distribution downloaded with *R*:
 
 ![gui-term](images/r-gui.png)
 
-And, of course, from RStudio:
+3. And, of course, from RStudio:
 
 ![rstudio-term](images/rstudio-console.png)
-
-
-* Show workspace layout
-    - Introduce R console
-    - introduce ideas of scripts
-
-
-
 
 * Show how to load data without using `read.table()`
 * Show how to change directory without using `getwd()`
@@ -66,9 +66,11 @@ And, of course, from RStudio:
 
 ### R Packages
 
-Packages are what make `R` so great. A package is 
+Packages are what make *R* so great. Packages allow *R* users to develop and **share** new code to extend the language -- e.g. implementing a new statistical model for analyzing microarrays, creating an awesome new graph to show copy number alterations in tumor samples, etc. *R* has become the *lingua franca* for statisticians developing new statistical techniques and has been widely adopted in the bioinformatics community ([Bioconductor](http://bioconductor.org/)).
 
-Most generic R packages are hosted on the Comprehensive R Archive Network (CRAN, <http://cran.us.r-project.org/>). To install one of these packages, you would use `install.packages("packagename")`. You only need to install a package once, then load it each time using `library(packagename)`. Let's install the **ggplot2** package, and load it.
+#### CRAN
+
+Most generic *R* packages are hosted on the Comprehensive *R* Archive Network [CRAN](http://cran.us.r-project.org/). To install one of these packages, you would use `install.packages("packagename")`. You only need to install a package once, then load it each time using `library(packagename)`. Here's how one would install and load the `ggplot2` package.
 
 ```{r, eval=FALSE}
 # Install only once.
@@ -78,9 +80,9 @@ install.packages("ggplot2")
 library(ggplot2)
 ```
 
-### Bioconductor
+#### Bioconductor
 
-Bioconductor packages work a bit different, and are not hosted on CRAN. Go to <http://bioconductor.org/> to learn more about the Bioconductor project. To use any Bioconductor package, you'll need a few "core" Bioconductor packages. Run the following commands to (1) download the installer script, and (2) install some core Bioconductor packages. You'll need internet connectivity to do this, and it'll take a few minutes, but it only needs to be done once.
+Bioconductor packages work a bit different, and are not hosted on CRAN. More info about the Bioconductor project can be found on its [home page](http://bioconductor.org/). To use any Bioconductor package, you'll need a few "core" Bioconductor packages. Run the following commands to (1) download the installer script, and (2) install some core Bioconductor packages. You'll need internet connectivity to do this, and it'll take a few minutes, but it only needs to be done once.
 
 ```{r, eval=FALSE}
 # Download the installer script
@@ -103,12 +105,12 @@ biocLite("DESeq2")
 library(DESeq2)
 ```
 
-
+---
 
 
 # R Calculator
 
-Perhaps in it's most basic form, `R` can be used as a glorified calculator. Enter the following commands into your `R` console or send them to the console from a script with CMD+Enter on OS X or Ctrl+Enter on Windows.
+In it's most basic form, *R* can be used as a glorified calculator. Enter the following commands into your *R* console or send them to the console from a script with CMD+Enter on OS X or Ctrl+Enter on Windows.
 
 ```{r}
 2+2
@@ -124,18 +126,27 @@ It is also smart enough to understand order of operations :)
 
 # R Data Types
 
-In addition to knowing about numbers, `R` knows about a lot of others things too. 
+In addition to knowing about numbers, *R* knows about a lot of others things too. 
 
-### Strings/Words/Characters
+
+
+### /Words/Characters
 
 ```{r}
+"k"
+"hi"
+"i love r so much"
+```
 
+### Numbers -- Integers & 
 
-
+```{r}
+"k"
+"hi"
+"i love r so much"
 ```
 
 
-# Assignment/Variables
 
 
 
@@ -143,7 +154,7 @@ In addition to knowing about numbers, `R` knows about a lot of others things too
 
 ### Functions
 
-R has built-in functions.
+*R* has built-in functions.
 
 ```{r}
 # Notice that this is a comment.
