@@ -109,11 +109,11 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <div id="r-calculator" class="section level3">
 <h3><em>R</em> Calculator</h3>
 <p>In it’s most basic form, the <em>R</em> console can be used as a glorified calculator. Enter the following commands into your <em>R</em> console to see it in action.</p>
-<pre class="r"><code>2 + 2
-5 * 4
+<pre><code>2+2
+5*4
 2^3</code></pre>
 <p>It is also smart enough to understand order of operations:</p>
-<pre class="r"><code>2 + 3 * 4/(5 + 3) * 15/2^2 + 3 * 4^2</code></pre>
+<pre><code>2+3*4/(5+3)*15/2^2+3*4^2</code></pre>
 <p>But <em>R</em> can be much more than just a calculator… :)</p>
 </div>
 <div id="r-objects" class="section level3">
@@ -123,7 +123,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <h4>Assignment</h4>
 <p>Objects in <em>R</em> are assigned to <strong>variables</strong>. Variables allow us to name <em>things</em> we’re using in our <em>R</em> computations so they may be easily accessed and manipulated later.</p>
 <p>Here’s an example of assigning the number <code>3</code> to the variable name <code>x</code>:</p>
-<pre class="r"><code>x &lt;- 3</code></pre>
+<pre><code>x &lt;- 3</code></pre>
 <p><code>&lt;-</code> is known as the assignment operator in <code>R</code>. The code chunk above would be read “x is assigned the value of three”. When you type the name of a variable that has been assigned a value, <em>R</em> will typically print the assigned value:</p>
 <pre><code>&gt; x &lt;- 3
 &gt; x
