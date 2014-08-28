@@ -10,7 +10,7 @@ output:
 
 ```{r config, echo=FALSE, message=FALSE, eval=TRUE}
 library(knitr)
-opts_chunk$set(results="hide", message=FALSE, fig.show="hide", fig.keep="none", tidy=TRUE)
+opts_chunk$set(results="hide", message=FALSE, fig.show="hide", fig.align="center", tidy=TRUE)
 ```
 
 -----
@@ -32,18 +32,79 @@ One of the greatest things about `R` is the vibrant community supporting it. One
 * [Google Developers intro to R video tutorials](https://www.youtube.com/watch?v=iffR3fWv4xw&list=PLOU2XLYxmsIK9qQfztXeybpHvru-TrqAP)
 
 
-# Brief Intro To RStudio
+# Brief Intro To RStudio & R Concepts
 
-*Some materials adapted from here[http://dss.princeton.edu/training/RStudio101.pdf]*
+### The R Console & Workspace
+
+`R` was developed as an *interactive* computing language. This means users enter commands into the machine line-by-line to produce a result. `R`'s original purpose was to allow researchers at Bell Labs interact with and analyze their data. The `R` console can be accessed in a number of ways:
+
+From a command prompt/terminal:
+
+![cmd-term](images/old-r-console.png)
+
+From the `R` GUI distribution downloaded with `R`:
+
+![gui-term](images/r-gui.png)
+
+And, of course, from RStudio:
+
+![rstudio-term](images/rstudio-console.png)
+
 
 * Show workspace layout
     - Introduce R console
     - introduce ideas of scripts
+
+
+
+
 * Show how to load data without using `read.table()`
 * Show how to change directory without using `getwd()`
     - also introduce to working directory
 * Show how to install packages without `install.packages()`
-* 
+	- In
+
+### R Packages
+
+Packages are what make `R` so great. A package is 
+
+Most generic R packages are hosted on the Comprehensive R Archive Network (CRAN, <http://cran.us.r-project.org/>). To install one of these packages, you would use `install.packages("packagename")`. You only need to install a package once, then load it each time using `library(packagename)`. Let's install the **ggplot2** package, and load it.
+
+```{r, eval=FALSE}
+# Install only once.
+install.packages("ggplot2")
+
+# Load the package every time you want to use it.
+library(ggplot2)
+```
+
+### Bioconductor
+
+Bioconductor packages work a bit different, and are not hosted on CRAN. Go to <http://bioconductor.org/> to learn more about the Bioconductor project. To use any Bioconductor package, you'll need a few "core" Bioconductor packages. Run the following commands to (1) download the installer script, and (2) install some core Bioconductor packages. You'll need internet connectivity to do this, and it'll take a few minutes, but it only needs to be done once.
+
+```{r, eval=FALSE}
+# Download the installer script
+source("http://bioconductor.org/biocLite.R")
+
+# biocLite() is the bioconductor installer function. Run it without any
+# arguments to install the core packages or update any installed packages. This
+# requires internet connectivity and will take some time!
+biocLite()
+```
+
+To install specific packages, first download the installer script if you haven't done so, and use `biocLite("packagename")`. This only needs to be done once then you can load the package like any other package. Let's download the [DESeq2 package](http://www.bioconductor.org/packages/release/bioc/html/DESeq2.html):
+
+```{r, eval=FALSE}
+# Do only once
+source("http://bioconductor.org/biocLite.R")
+biocLite("DESeq2")
+
+# Every time you need to use the DESeq2 package
+library(DESeq2)
+```
+
+
+
 
 # R Calculator
 
@@ -405,46 +466,8 @@ cars8 <- read.csv(file="cars8.csv", header=TRUE, row.names=1)
 cars8
 ```
 
-## Using R and Bioconductor for gene expression analysis
-
-In this section we'll analyze some publicly available gene expression data using R and bioinformatics-focused R packages in [Bioconductor](http://bioconductor.org/). But first, a bit about R *packages*.
-
 ### Packages
 
-Most generic R packages are hosted on the Comprehensive R Archive Network (CRAN, <http://cran.us.r-project.org/>). To install one of these packages, you would use `install.packages("packagename")`. You only need to install a package once, then load it each time using `library(packagename)`. Let's install the **ggplot2** package, and load it.
-
-```{r, eval=FALSE}
-# Install only once.
-install.packages("ggplot2")
-
-# Load the package every time you want to use it.
-library(ggplot2)
-```
-
-### Bioconductor
-
-Bioconductor packages work a bit different, and are not hosted on CRAN. Go to <http://bioconductor.org/> to learn more about the Bioconductor project. To use any Bioconductor package, you'll need a few "core" Bioconductor packages. Run the following commands to (1) download the installer script, and (2) install some core Bioconductor packages. You'll need internet connectivity to do this, and it'll take a few minutes, but it only needs to be done once.
-
-```{r, eval=FALSE}
-# Download the installer script
-source("http://bioconductor.org/biocLite.R")
-
-# biocLite() is the bioconductor installer function. Run it without any
-# arguments to install the core packages or update any installed packages. This
-# requires internet connectivity and will take some time!
-biocLite()
-```
-
-To install specific packages, first download the installer script if you haven't done so, and use `biocLite("packagename")`. This only needs to be done once then you can load the package like any other package. Let's download the [DESeq2 package](http://www.bioconductor.org/packages/release/bioc/html/DESeq2.html):
-
-```{r, eval=FALSE}
-# Do only once
-source("http://bioconductor.org/biocLite.R")
-biocLite("DESeq2")
-
-# Every time you need to use the DESeq2 package
-library(DESeq2)
-```
 
 Bioconductor packages usually have great documentation in the form of *vignettes*. For a great example, take a look at the [DESeq2 vignette for analyzing count data](http://www.bioconductor.org/packages/release/bioc/vignettes/DESeq2/inst/doc/DESeq2.pdf).
 
