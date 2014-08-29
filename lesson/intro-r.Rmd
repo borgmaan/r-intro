@@ -110,7 +110,13 @@ More information on general *R* programming style can be found [here](http://r-p
 
 #### R Data Structures
 
-An excellent comprehensive overview of the types of objects used to store data in *R* can be found [here](http://adv-r.had.co.nz/Data-structures.html). We'll briefly cover these below
+An excellent comprehensive overview of the types of objects used to store data in *R* can be found [here](http://adv-r.had.co.nz/Data-structures.html). We'll briefly cover the most common of these below.
+
+**Vectors**
+
+Vectors are *R*'s
+
+
 
 
 ### The R Workspace
@@ -156,4 +162,21 @@ library(ggplot2)
 ---
 
 
+
+# Getting Data Into R
+
+
+
+# Basic Data Manipulation
+
+Data manipulation/munging takes a considerable amount of time for [data analysis](http://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html?_r=0)
+
+### Subsetting
+
+### Wide vs. Long Format
+
+Data analysts have come up with ways to describe the format of the data they work in. Most of the data you come into contact with will be in either [wide or long](http://en.wikipedia.org/wiki/Wide_and_narrow_data) 
+
+
+# Basic Plotting
 
