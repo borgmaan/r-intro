@@ -153,7 +153,7 @@ You can access values inside of a vector by *subsetting* it with the `[]` operat
 
 #### Matricies/Arrays
 
-Matricies and arrays are vectors with *dimensions*. Since they are vectors, they can only contain elements of the same *type*. Matricies have 2 dimensions (rows & columns) and are created with the `matrix` function:
+Matrices and arrays are vectors with *dimensions*. Since they are vectors, they can only contain elements of the same *type*. Matrices have 2 dimensions (rows & columns) and are created with the `matrix` function:
 
 ```
 > matrix(1:25, ncol = 5, nrow = 5)
@@ -165,7 +165,7 @@ Matricies and arrays are vectors with *dimensions*. Since they are vectors, they
 [5,]    5   10   15   20   25
 ```
 
-Arrays act very similar to matricies, but can have more than 2 dimensions. Here we create a three dimensional array (cube of numbers):
+Arrays act very similar to matrices, but can have more than 2 dimensions. Here we create a three dimensional array (cube of numbers):
 
 ```
 > array(1:24, dim = c(2, 4, 3))
@@ -188,7 +188,7 @@ Arrays act very similar to matricies, but can have more than 2 dimensions. Here 
 [2,]   18   20   22   24
 ```
 
-We can subset arrays in matricies in the same way we did vectors, but we must be concious of their demensionality. For a matrix, we 
+We can subset arrays in matrices in the same way we did vectors, but we must be conscious of their dimensionality. For a matrix, we 
 
 
 #### Data Frames
