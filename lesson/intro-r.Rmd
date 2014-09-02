@@ -59,6 +59,8 @@ RStudio has an *R* console running inside it:
 
 ![rstudio-term](images/rstudio-console.png)
 
+[Here's some useful tips](https://support.rstudio.com/hc/en-us/articles/200404846-Working-in-the-Console) on using the *R* console in *RStudio*.
+
 
 ### *R* Calculator
 
@@ -234,8 +236,8 @@ One of best ways to discover all the built-in helpers *R* has to offer is by rea
 
 *R* comes with a great deal of built in documentation. The fastest way to search for built in functions is from *RStudio*'s help search tool. Let's say we want to find a function that computes the standard deviation of a vector of numbers. We would choose the help tab in the *RStudio* viewer pane, and type something like "standard deviation" in the search box.
 
+![rstudio-help-annot](images/rstudio-help-annot.png)
 
-![rstudio-stdev-search](images/rstudio-stdev-search.png)
 
  In the days before *RStudio*, all of this searching took place on the command line. You may find this is a more convenient way to search for *R* help, so we'll cover it here. The `help()` and `?` functions can be used to search the documentation for functions matching the inputted text. The following functions perform the same task -- searching *R*'s help documentation for any functions named `mean`.
 
@@ -289,6 +291,43 @@ And we'll be able to see some objects if we add them:
 
 **TODO: show how you can view the environment in RStudio**
 
+#### Saving Your Work for Later
+
+Talk about:
+
+```
+?save.image
+?save
+?load
+?saveRDS
+?readRDS
+```
+
+
+#### Clearing Your Workspace
+
+There are two main ways to clear your workspace in *R*: 1) using the `rm()` function to remove objects and 2) restarting the *R* session. 
+
+The `rm()` command allows you to selectively remove objects from your *R* session when they are no longer needed (see `?rm` for more details). Here's an example of the usage:
+
+```
+> ls() # start in an empty workspace
+character(0)
+> y <- 1
+> z <- 1
+> ls() # can see the two objects we created
+[1] "y" "z"
+> rm(y) # remove y
+> ls()
+[1] "z"
+```
+
+
+You can remove *all* objects in your workspace by using `ls()` to generate a vector of all the objects that have been created, and passing that to the `rm()` function:
+
+```{r, eval = F}
+rm(list = ls())
+```
 
 
 ### R Packages
@@ -364,6 +403,13 @@ It is also very easy to export comma-delimited files [from Excel](http://office.
 ```
 
 ### R Functions for Reading Data
+
+A comprehensive guide on *R* methods of data import and export can be found [here](http://cran.r-project.org/doc/manuals/r-release/R-data.html). We'll cover a few of the most useful functions used for importing and exporting data types you will most likely come across. 
+
+#### read.table
+
+#### read.csv
+
 
 
 # Basic Data Manipulation
