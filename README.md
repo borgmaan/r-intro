@@ -1,14 +1,12 @@
-## Intro to R
+# Intro to R
 
-### Background
+## Background
 
 Repository contains all the materials for the  VARI Bioinformatics & Biostatistics Core seminar series, *Introduction to R*.
 
+## Course Materials
 
-### Course Materials
-
-* [Home Page]()
-* [Installing `R` & RStudio]()
-* [Course Slides]()
-* [Course Handouts]()
-
+* [Home Page](http://borgmaan.github.io/r-intro/)
+* [Course Handouts](http://borgmaan.github.io/r-intro/lesson/intro-r.html)
+* [Course Slides](http://borgmaan.github.io/r-intro/lesson/intro-r.html)
+* [Intro R Cheatsheet](http://borgmaan.github.io/r-intro/cheatsheet/intro-r-cheatsheet.html)
