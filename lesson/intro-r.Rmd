@@ -195,6 +195,21 @@ We can subset arrays in matrices in the same way we did vectors, but we must be 
 
 Data frames are the *R* data structure you will deal with most frequently as a new user. *R*'s data import/export functions will return these by default. 
 
+```
+> data.frame(group = rep(c('trt', 'ctrl'), each=5), response = rnorm(10))
+   group    response
+1    trt  0.01231700
+2    trt  0.55028627
+3    trt -0.24411263
+4    trt  0.35996580
+5    trt  0.89960231
+6   ctrl -0.76686861
+7   ctrl  0.03573818
+8   ctrl  1.69159332
+9   ctrl  0.09612385
+10  ctrl  0.60415288
+```
+
 
 #### Lists
 
