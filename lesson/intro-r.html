@@ -6,6 +6,7 @@
 
 <meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Style-Type" content="text/css" />
 <meta name="generator" content="pandoc" />
 
 <meta name="author" content="Andrew Borgman // VARI BBC" />
@@ -69,7 +70,15 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <li><a href="#the-r-workspace">The R Workspace</a></li>
 <li><a href="#r-packages">R Packages</a></li>
 </ul></li>
-<li><a href="#getting-data-into-r">Getting Data Into R</a></li>
+<li><a href="#getting-data-into-r">Getting Data Into R</a><ul>
+<li><a href="#data-storage-file-types">Data Storage File types</a></li>
+<li><a href="#r-functions-for-reading-data">R Functions for Reading Data</a></li>
+</ul></li>
+<li><a href="#basic-data-manipulation">Basic Data Manipulation</a><ul>
+<li><a href="#subsetting">Subsetting</a></li>
+<li><a href="#wide-vs.long-format">Wide vs. Long Format</a></li>
+</ul></li>
+<li><a href="#basic-plotting">Basic Plotting</a></li>
 </ul>
 </div>
 
@@ -139,11 +148,37 @@ Error: object 'y' not found</code></pre>
 </ol>
 <p>More information on general <em>R</em> programming style can be found <a href="http://r-pkgs.had.co.nz/style.html">here</a>.</p>
 </div>
+<div id="r-data-types" class="section level4">
+<h4>R Data Types</h4>
+<p>Objects in <em>R</em> can be a number of different types. Here we’ll discuss the three types you are most likely to encounter.</p>
+<ol style="list-style-type: decimal">
+<li><strong>Character</strong>: character objects are letters, words, or strings.
+<ul>
+<li>Ex: <code>'j'</code>, <code>'hello'</code>, <code>'treatment A'</code></li>
+</ul></li>
+<li><strong>Numeric</strong>: numeric objects are integers or real numbers
+<ul>
+<li>Ex: <code>1</code>, <code>550</code>, <code>3.14</code></li>
+</ul></li>
+<li><strong>Logical</strong>: logical objects take the value of <code>TRUE</code> and <code>FALSE</code> and are often used to control programming flow</li>
+</ol>
+</div>
 <div id="r-data-structures" class="section level4">
 <h4>R Data Structures</h4>
 <p>An excellent comprehensive overview of the types of objects used to store data in <em>R</em> can be found <a href="http://adv-r.had.co.nz/Data-structures.html">here</a>. We’ll briefly cover the most common of these below.</p>
 <p><strong>Vectors</strong></p>
-<p>Vectors are <em>R</em>’s</p>
+<p>Vectors are <em>R</em>’s most basic data structure. When we created the variable <code>x</code> in the previous section, we had actually created a <em>vector</em> of length 1. The elements contained in a vector must be of the same <em>type</em> (see prev. section). Vectors including more than one element are frequently</p>
+<p><strong>Lists</strong></p>
+<p><strong>Matricies/Arrays</strong></p>
+<p><strong>Data Frames</strong></p>
+</div>
+<div id="r-built-in-functions" class="section level4">
+<h4>R Built-In Functions</h4>
+<p><em>R</em> also provides users with many built in functions allowing users to perform a range of tasks – from computing summary statistics, to fitting linear models, to generating random variables. There are lots of good lists <a href="http://www.sr.bham.ac.uk/~ajrs/R/r-function_list.html">out</a> <a href="http://www.statmethods.net/management/functions.html">there</a>.</p>
+<p>The best way to discover these if by <a href="http://adv-r.had.co.nz/Vocabulary.html">reading lists of available functions</a> or <em>Google-ing</em> to see if the function you seek exists. In most cases, <em>R</em> functions have been given logical names. For example, the <code>mean</code> function is used to find the average of a vector of numbers:</p>
+<pre><code>&gt; my_data &lt;- c(10, 22, 44, 55, 14, 66)
+&gt; mean(my_data)
+[1] 35.16667</code></pre>
 </div>
 </div>
 <div id="the-r-workspace" class="section level3">
@@ -176,6 +211,95 @@ library(ggplot2)</code></pre>
 </div>
 <div id="getting-data-into-r" class="section level1">
 <h1>Getting Data Into R</h1>
+<p>Now that we’re feeling a bit more comfortable with the <em>R</em> environment, we’ll explore how we can import our own experimental data into <em>R</em>.</p>
+<p>Below the first few rows of some data in stored <a href="http://vita.had.co.nz/papers/tidy-data.pdf">tidy</a> format (more on this later).</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="left">treatment</th>
+<th align="right">vals</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Control</td>
+<td align="right">7.739886</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">Control</td>
+<td align="right">11.145914</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">Control</td>
+<td align="right">10.113178</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">Control</td>
+<td align="right">9.249644</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">Control</td>
+<td align="right">9.749033</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="left">Control</td>
+<td align="right">11.048534</td>
+</tr>
+</tbody>
+</table>
+<div id="data-storage-file-types" class="section level3">
+<h3>Data Storage File types</h3>
+<p>The easiest way to store data for import into <em>R</em> is in text files. R has facilities for importing data directly from Excel spreadsheets or from some data base format, but such performing such operations is outside the scope of this course.</p>
+<p>Flat text files containing data typically have some type of special character (<a href="http://en.wikipedia.org/wiki/Delimiter-separated_values">delimiter</a>) – think: tab, semicolon, space – for separating different columns of data. Data stored in text files most commonly falls into the following formats.</p>
+<div id="tab-delimited-files" class="section level4">
+<h4>Tab-Delimited Files</h4>
+<p>Tab-delimited files are easily <a href="http://office.microsoft.com/en-us/excel-help/import-or-export-text-txt-or-csv-files-HP010099725.aspx">exported from Excel</a> and are one of the best ways to store data in a flat text file. Tab-delimited files typically have a file extension of <code>.txt</code> or <code>.tsv</code>.</p>
+<pre><code>id  treatment   vals
+1   Control 7.73988631317717
+2   Control 11.1459141243514
+3   Control 10.1131777328925
+4   Control 9.24964428771185
+5   Control 9.7490331495698
+6   Control 11.048533802881
+7   Control 10.8371802055362</code></pre>
+</div>
+<div id="comma-delimited-files" class="section level4">
+<h4>Comma-Delimited Files</h4>
+<p>It is also very easy to export comma-delimited files <a href="http://office.microsoft.com/en-us/excel-help/import-or-export-text-txt-or-csv-files-HP010099725.aspx">from Excel</a>. Comma-delimited files typically have a file extension of <code>.csv</code>.</p>
+<pre><code>&quot;id&quot;,&quot;treatment&quot;,&quot;vals&quot;
+1,&quot;Control&quot;,7.73988631317717
+2,&quot;Control&quot;,11.1459141243514
+3,&quot;Control&quot;,10.1131777328925
+4,&quot;Control&quot;,9.24964428771185
+5,&quot;Control&quot;,9.7490331495698
+6,&quot;Control&quot;,11.048533802881
+7,&quot;Control&quot;,10.8371802055362</code></pre>
+</div>
+</div>
+<div id="r-functions-for-reading-data" class="section level3">
+<h3>R Functions for Reading Data</h3>
+</div>
+</div>
+<div id="basic-data-manipulation" class="section level1">
+<h1>Basic Data Manipulation</h1>
+<p>People often are surprised at the amount of time Data manipulation/munging <a href="http://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html?_r=0">data analysis</a></p>
+<div id="subsetting" class="section level3">
+<h3>Subsetting</h3>
+</div>
+<div id="wide-vs.long-format" class="section level3">
+<h3>Wide vs. Long Format</h3>
+<p>Data analysts have come up with ways to describe the format of the data they work in. Most of the data you come into contact with will be in either <a href="http://en.wikipedia.org/wiki/Wide_and_narrow_data">wide or long</a></p>
+</div>
+</div>
+<div id="basic-plotting" class="section level1">
+<h1>Basic Plotting</h1>
 </div>
 
 
@@ -190,12 +314,12 @@ $(document).ready(function () {
 
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
+<!-- dynamically load mathjax for compatibility with --self-contained -->
 <script>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>

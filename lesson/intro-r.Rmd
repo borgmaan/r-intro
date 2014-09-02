@@ -107,6 +107,16 @@ You can name your variables anything you want, but there are a few rules:
 
 More information on general *R* programming style can be found [here](http://r-pkgs.had.co.nz/style.html).
 
+#### R Data Types
+
+Objects in *R* can be a number of different types. Here we'll discuss the three types you are most likely to encounter. 
+
+1. **Character**: character objects are letters, words, or strings.
+	- Ex: `'j'`, `'hello'`, `'treatment A'`
+2. **Numeric**: numeric objects are integers or real numbers
+	- Ex: `1`, `550`, `3.14`
+3. **Logical**: logical objects take the value of `TRUE` and `FALSE` and are often used to control programming flow
+
 
 #### R Data Structures
 
@@ -114,9 +124,26 @@ An excellent comprehensive overview of the types of objects used to store data i
 
 **Vectors**
 
-Vectors are *R*'s
+Vectors are *R*'s most basic data structure. When we created the variable `x` in the previous section, we had actually created a *vector* of length 1. The elements contained in a vector must be of the same *type* (see prev. section). Vectors including more than one element are frequently 
+
+**Lists**
+
+**Matricies/Arrays**
+
+**Data Frames**
 
 
+#### R Built-In Functions
+
+*R* also provides users with many built in functions allowing users to perform a range of tasks -- from computing summary statistics, to fitting linear models, to generating random variables. There are lots of good lists [out](http://www.sr.bham.ac.uk/~ajrs/R/r-function_list.html) [there](http://www.statmethods.net/management/functions.html). 
+
+The best way to discover these if by [reading lists of available functions](http://adv-r.had.co.nz/Vocabulary.html) or *Google-ing* to see if the function you seek exists. In most cases, *R* functions have been given logical names. For example, the `mean` function is used to find the average of a vector of numbers:
+
+```
+> my_data <- c(10, 22, 44, 55, 14, 66)
+> mean(my_data)
+[1] 35.16667
+```
 
 
 ### The R Workspace
@@ -165,11 +192,62 @@ library(ggplot2)
 
 # Getting Data Into R
 
+Now that we're feeling a bit more comfortable with the *R* environment, we'll explore how we can import our own experimental data into *R*. 
+
+Below the first few rows of some data in stored [tidy](http://vita.had.co.nz/papers/tidy-data.pdf) format (more on this later). 
+
+| id|treatment |      vals|
+|--:|:---------|---------:|
+|  1|Control   |  7.739886|
+|  2|Control   | 11.145914|
+|  3|Control   | 10.113178|
+|  4|Control   |  9.249644|
+|  5|Control   |  9.749033|
+|  6|Control   | 11.048534|
+
+### Data Storage File types
+
+The easiest way to store data for import into *R* is in text files. R has facilities for importing data directly from Excel spreadsheets or from some data base format, but such performing such operations is outside the scope of this course. 
+
+Flat text files containing data typically have some type of special character ([delimiter](http://en.wikipedia.org/wiki/Delimiter-separated_values)) -- think: tab, semicolon, space -- for separating different columns of data. Data stored in text files most commonly falls into the following formats.
+
+
+#### Tab-Delimited Files
+
+Tab-delimited files are easily [exported from Excel](http://office.microsoft.com/en-us/excel-help/import-or-export-text-txt-or-csv-files-HP010099725.aspx) and are one of the best ways to store data in a flat text file. Tab-delimited files typically have a file extension of `.txt` or `.tsv`.
+
+```
+id	treatment	vals
+1	Control	7.73988631317717
+2	Control	11.1459141243514
+3	Control	10.1131777328925
+4	Control	9.24964428771185
+5	Control	9.7490331495698
+6	Control	11.048533802881
+7	Control	10.8371802055362
+```
+
+#### Comma-Delimited Files
+
+It is also very easy to export comma-delimited files [from Excel](http://office.microsoft.com/en-us/excel-help/import-or-export-text-txt-or-csv-files-HP010099725.aspx). Comma-delimited files typically have a file extension of `.csv`.
+
+```
+"id","treatment","vals"
+1,"Control",7.73988631317717
+2,"Control",11.1459141243514
+3,"Control",10.1131777328925
+4,"Control",9.24964428771185
+5,"Control",9.7490331495698
+6,"Control",11.048533802881
+7,"Control",10.8371802055362
+```
+
+### R Functions for Reading Data
 
 
 # Basic Data Manipulation
 
-Data manipulation/munging takes a considerable amount of time for [data analysis](http://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html?_r=0)
+People often are surprised at the amount of time Data manipulation/munging  [data analysis](http://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html?_r=0)
 
 ### Subsetting
 
@@ -179,4 +257,7 @@ Data analysts have come up with ways to describe the format of the data they wor
 
 
 # Basic Plotting
+
+
+
 
