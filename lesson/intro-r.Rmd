@@ -193,7 +193,7 @@ We can subset arrays in matrices in the same way we did vectors, but we must be 
 
 #### Data Frames
 
-Data frames are the *R* data structure you will deal with most frequently as a new user. *R*'s data import/export functions will return these by default. 
+Data frames are the *R* data structure you will deal with most frequently as a new useR. *R*'s data import/export functions will return these by default. They can also be created using the `data.frame()` function (see `?data.frame` for more options). Here's a quick example creating some dummy experimental data:
 
 ```
 > data.frame(group = rep(c('trt', 'ctrl'), each=5), response = rnorm(10))

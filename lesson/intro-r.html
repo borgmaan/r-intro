@@ -220,7 +220,19 @@ c &lt;- c(TRUE, TRUE, TRUE, FALSE, TRUE, FALSE)  # logical vector</code></pre>
 </div>
 <div id="data-frames" class="section level4">
 <h4>Data Frames</h4>
-<p>Data frames are the <em>R</em> data structure you will deal with most frequently as a new user. <em>R</em>’s data import/export functions will return these by default.</p>
+<p>Data frames are the <em>R</em> data structure you will deal with most frequently as a new useR. <em>R</em>’s data import/export functions will return these by default. They can also be created using the <code>data.frame()</code> function (see <code>?data.frame</code> for more options). Here’s a quick example creating some dummy experimental data:</p>
+<pre><code>&gt; data.frame(group = rep(c('trt', 'ctrl'), each=5), response = rnorm(10))
+   group    response
+1    trt  0.01231700
+2    trt  0.55028627
+3    trt -0.24411263
+4    trt  0.35996580
+5    trt  0.89960231
+6   ctrl -0.76686861
+7   ctrl  0.03573818
+8   ctrl  1.69159332
+9   ctrl  0.09612385
+10  ctrl  0.60415288</code></pre>
 </div>
 <div id="lists" class="section level4">
 <h4>Lists</h4>
