@@ -8,6 +8,14 @@ output:
     toc: true
 ---
 
+
+<!-- Cheating in some CSS -->
+<style>
+.r {
+  background-color: #ffffff
+}
+</style>
+
 ```{r config, echo=FALSE, message=FALSE, eval=TRUE}
 library(knitr)
 opts_chunk$set(results="hide", message=FALSE, fig.show="hide", fig.align="center", tidy=TRUE)
@@ -118,32 +126,130 @@ Objects in *R* can be a number of different types. Here we'll discuss the three 
 3. **Logical**: logical objects take the value of `TRUE` and `FALSE` and are often used to control programming flow
 
 
-#### R Data Structures
+### R Data Structures
 
-An excellent comprehensive overview of the types of objects used to store data in *R* can be found [here](http://adv-r.had.co.nz/Data-structures.html). We'll briefly cover the most common of these below.
+An excellent comprehensive overview of the types of objects used to store data in *R* can be found [here](http://adv-r.had.co.nz/Data-structures.html). [Quick-R](http://www.statmethods.net/) also provides and excellent [quick reference](http://www.statmethods.net/input/datatypes.html). We'll briefly cover the most common of these below.
 
-**Vectors**
+#### Vectors
 
-Vectors are *R*'s most basic data structure. When we created the variable `x` in the previous section, we had actually created a *vector* of length 1. The elements contained in a vector must be of the same *type* (see prev. section). Vectors including more than one element are frequently 
+Vectors are *R*'s most basic data structure. When we created the variable `x` in the previous section, we had actually created a *vector* of length 1. The elements contained in a vector must be of the same *type* (see prev. section). Vectors including more than one element are frequently constructed using the `c()` (concatenate) function:
 
-**Lists**
+```{r}
+a <- c(1,2,5.3,6,-2,4) # numeric vector
+b <- c("one","two","three") # character vector
+c <- c(TRUE,TRUE,TRUE,FALSE,TRUE,FALSE) # logical vector
+```
 
-**Matricies/Arrays**
+You can access values inside of a vector by *subsetting* it with the `[]` operators. Examples:
 
-**Data Frames**
+```
+> a[1] # access the first element of a
+[1] 1
+> a[3] # access the fourth element of a
+[1] 5.3
+> b[length(b)] # acess the last element of b
+[1] "three"
+```
+
+#### Matricies/Arrays
+
+Matricies and arrays are vectors with *dimensions*. Since they are vectors, they can only contain elements of the same *type*. Matricies have 2 dimensions (rows & columns) and are created with the `matrix` function:
+
+```
+> matrix(1:25, ncol = 5, nrow = 5)
+     [,1] [,2] [,3] [,4] [,5]
+[1,]    1    6   11   16   21
+[2,]    2    7   12   17   22
+[3,]    3    8   13   18   23
+[4,]    4    9   14   19   24
+[5,]    5   10   15   20   25
+```
+
+Arrays act very similar to matricies, but can have more than 2 dimensions. Here we create a three dimensional array (cube of numbers):
+
+```
+> array(1:24, dim = c(2, 4, 3))
+, , 1
+
+     [,1] [,2] [,3] [,4]
+[1,]    1    3    5    7
+[2,]    2    4    6    8
+
+, , 2
+
+     [,1] [,2] [,3] [,4]
+[1,]    9   11   13   15
+[2,]   10   12   14   16
+
+, , 3
+
+     [,1] [,2] [,3] [,4]
+[1,]   17   19   21   23
+[2,]   18   20   22   24
+```
+
+We can subset arrays in matricies in the same way we did vectors, but we must be concious of their demensionality. For a matrix, we 
+
+
+#### Data Frames
+
+Data frames are the *R* data structure you will deal with most frequently as a new user. *R*'s data import/export functions will return these by default. 
+
+
+#### Lists
+
+Like vectors, lists are containers allowing one to store multiple *R* objects in the same parent object. Unlike vectors, lists do not enforce the rule that all of the elements must be of the same type. For example, we'll create a list with some info about a person:
+
+```{r}
+person <- list(first = 'andrew', last = 'borgman', age = 25, interests = c('math', 'computers', 'biology'))
+```
 
 
 #### R Built-In Functions
 
 *R* also provides users with many built in functions allowing users to perform a range of tasks -- from computing summary statistics, to fitting linear models, to generating random variables. There are lots of good lists [out](http://www.sr.bham.ac.uk/~ajrs/R/r-function_list.html) [there](http://www.statmethods.net/management/functions.html). 
 
-The best way to discover these if by [reading lists of available functions](http://adv-r.had.co.nz/Vocabulary.html) or *Google-ing* to see if the function you seek exists. In most cases, *R* functions have been given logical names. For example, the `mean` function is used to find the average of a vector of numbers:
+One of best ways to discover all the built-in helpers *R* has to offer is by reading [lists of](http://www.statmethods.net/management/functions.html) [available functions](http://adv-r.had.co.nz/Vocabulary.html). In most cases, *R* functions have been given logical names. For example, the `mean` function is used to find the average of a vector of numbers:
 
 ```
 > my_data <- c(10, 22, 44, 55, 14, 66)
 > mean(my_data)
 [1] 35.16667
 ```
+
+*R* comes with a great deal of built in documentation. The fastest way to search for built in functions is from *RStudio*'s help search tool. Let's say we want to find a function that computes the standard deviation of a vector of numbers. We would choose the help tab in the *RStudio* viewer pane, and type something like "standard deviation" in the search box.
+
+
+![rstudio-stdev-search](images/rstudio-stdev-search.png)
+
+ In the days before *RStudio*, all of this searching took place on the command line. You may find this is a more convenient way to search for *R* help, so we'll cover it here. The `help()` and `?` functions can be used to search the documentation for functions matching the inputted text. The following functions perform the same task -- searching *R*'s help documentation for any functions named `mean`.
+
+```{r, eval=FALSE, tidy=FALSE}
+?mean
+help(mean)
+```
+
+If we got lucky and picked the right name of the function, *RStudio* will pop up a help window showing the function documentation like this:
+
+![rstudio-help](images/rstudio-help.png)
+
+But sometimes we don't know the name of the function we seek. Fortunately, *R*'s documentation search is flexible enough to accomodate that. Let's try to find a function that lets us compute the standard deviation of a vector of numbers. First, we'll try a serach with the name of the function used in *Excel* software
+
+```
+> ?stdev
+No documentation for ‘STDEV’ in specified packages and libraries:
+you could try ‘??STDEV’
+```
+
+You'll see that *R* gives us a hint and is telling us to use the function `??`. This function works like the search box we used to find help in *RStudio*. Let's search for "standard deviation":
+
+```{r, eval=FALSE, tidy=FALSE}
+??"standard deviation"
+```
+
+We see the same search results returned in the *RStudio* help pane. 
+
+#### **And, if all else fails, try *Google-ing* to see if the function you seek exists!!**
 
 
 ### The R Workspace
