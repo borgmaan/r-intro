@@ -271,6 +271,8 @@ We see the same search results returned in the *RStudio* help pane.
 
 ### The R Workspace
 
+#### Defining & Viewing the Workspace
+
 The *R* workspace can be thought of as a container holding all of the objects you've created duing your *R* session. You can print a list of all of the objects in your current workspace using the `ls()` function. If we start a new *R* session, our workspace will be empty:
 
 ```
@@ -284,30 +286,36 @@ And we'll be able to see some objects if we add them:
 > x <- 20
 > y <- 30
 > z <- x + y
+> df <- data.frame(nums = 1:10, b = letters[1:10])
 > ls()
-[1] "x" "y" "z"
+[1] "df" "x"  "y"  "z" 
 ```
 
+You can also keep tabs on the objects in your workspace using the *Environment* panel in *RStudio*. 
 
-**TODO: show how you can view the environment in RStudio**
+![env-panel](images/env-panel.png)
 
-#### Saving Your Work for Later
+Clicking on object in the environment panel will allow you to view the data behind it.
 
-Talk about:
+![env-click](images/env-click.png)
 
-```
-?save.image
-?save
-?load
-?saveRDS
-?readRDS
-```
+
+#### Saving Your Workspace for Later
+
+Oftentimes, your analysis and work on a data set will span more than one *R* session. *R* provides built in facilities for saving snapshots of your workspace so you can easily pick up where you left off and continue your analysis. This can be very useful for beginner *R* users who still do most of their work interactively. Here's a breakdown of some useful files for 
+
+* `save.image`: Lets you save a snapshot of your entire workspace to a `*.RData` file.
+    - Typical usage: `save.image('my-work.RData')`
+* `save`: Lets you save a snapshot of a few specified objects to a `*.RData` file.
+    - This can be useful if you only want to save one or 2 things (like a modified data set).
+    - Typical usage (saving `df` the `data.frame` we created in the last section): `save(df, file = 'my-dataframe.RData')`
+* `load`: Lets you load your saved `*.RData` files back in to *R* ot continue working on them. 
+    -  Typical usage (saving `df` the `data.frame` we created in the last section): `load('my-dataframe.RData')`
 
 
 #### Clearing Your Workspace
 
-There are two main ways to clear your workspace in *R*: 1) using the `rm()` function to remove objects and 2) restarting the *R* session. 
-
+There are two main ways to clear your workspace in *R*/*RStudio*: 1) using the `rm()` function to remove objects and 2) using the *Clear* button in *RStudio*. 
 The `rm()` command allows you to selectively remove objects from your *R* session when they are no longer needed (see `?rm` for more details). Here's an example of the usage:
 
 ```
@@ -318,16 +326,19 @@ character(0)
 > ls() # can see the two objects we created
 [1] "y" "z"
 > rm(y) # remove y
-> ls()
+> ls()  
 [1] "z"
 ```
-
 
 You can remove *all* objects in your workspace by using `ls()` to generate a vector of all the objects that have been created, and passing that to the `rm()` function:
 
 ```{r, eval = F}
 rm(list = ls())
 ```
+
+You can also use a button in *RStudio*'s *Environment* panel to remove all of the objects in your workspace. *RStudio* will prompt you asking if you are sure you want to go through with deleting all objects, choosing *Yes* will permanently delete all objects in the workspace.
+
+![clear](images/clear.png)
 
 
 ### R Packages
