@@ -372,8 +372,8 @@ library(ggplot2)
 # Getting Data Into R
 
 **Before we get into this, please download this zip file:**
-* data_dl.zip
-<a href="http://www.goldcoastwebdesigns.com/dl/aff-masters.zip" target="_blank">data_dl.zip</a>
+
+* <a href="https://github.com/borgmaan/r-intro/blob/master/data/data_dl.zip?raw=true" target="_blank">data_dl.zip</a>
 
 Now that we're feeling a bit more comfortable with the *R* environment, we'll explore how we can import our own experimental data into *R*. 
 
