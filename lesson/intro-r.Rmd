@@ -21,15 +21,14 @@ library(knitr)
 opts_chunk$set(results="hide", message=FALSE, fig.show="hide", fig.align="center", tidy=TRUE)
 ```
 
------
-
+*******
 
 # Disclaimer 
 
 ## *Document is still a work in progress*
 
 
------
+*******
 
 
 # External Resources
@@ -46,7 +45,7 @@ Such a short tutorial cannot cover the vast *R* universe in much detail. Fortuna
 	- The rest of the book is essential for a deep understanding of *R*
 
 
------
+*******
 
 
 # Brief Intro To RStudio & *R* Concepts
@@ -61,6 +60,7 @@ RStudio has an *R* console running inside it:
 
 [Here's some useful tips](https://support.rstudio.com/hc/en-us/articles/200404846-Working-in-the-Console) on using the *R* console in *RStudio*.
 
+*******
 
 ### *R* Calculator
 
@@ -78,6 +78,8 @@ It is also smart enough to understand order of operations:
 2+3*4/(5+3)*15/2^2+3*4^2
 ```
 But *R* can be much more than just a calculator... :)
+
+*******
 
 
 ### R Objects
@@ -117,6 +119,7 @@ You can name your variables anything you want, but there are a few rules:
 
 More information on general *R* programming style can be found [here](http://r-pkgs.had.co.nz/style.html).
 
+
 #### R Data Types
 
 Objects in *R* can be a number of different types. Here we'll discuss the three types you are most likely to encounter. 
@@ -127,6 +130,7 @@ Objects in *R* can be a number of different types. Here we'll discuss the three 
 	- Ex: `1`, `550`, `3.14`
 3. **Logical**: logical objects take the value of `TRUE` and `FALSE` and are often used to control programming flow
 
+*******
 
 ### R Data Structures
 
@@ -221,8 +225,9 @@ Like vectors, lists are containers allowing one to store multiple *R* objects in
 person <- list(first = 'andrew', last = 'borgman', age = 25, interests = c('math', 'computers', 'biology'))
 ```
 
+*******
 
-#### R Built-In Functions
+### R Built-In Functions
 
 *R* also provides users with many built in functions allowing users to perform a range of tasks -- from computing summary statistics, to fitting linear models, to generating random variables. There are lots of good lists [out](http://www.sr.bham.ac.uk/~ajrs/R/r-function_list.html) [there](http://www.statmethods.net/management/functions.html). 
 
@@ -268,6 +273,7 @@ We see the same search results returned in the *RStudio* help pane.
 
 #### **And, if all else fails, try *Google-ing* to see if the function you seek exists!!**
 
+*******
 
 ### The R Workspace
 
@@ -299,6 +305,7 @@ Clicking on object in the environment panel will allow you to view the data behi
 
 ![env-click](images/env-click.png)
 
+*******
 
 #### Saving Your Workspace for Later
 
@@ -312,6 +319,7 @@ Oftentimes, your analysis and work on a data set will span more than one *R* ses
 * `load`: Lets you load your saved `*.RData` files back in to *R* ot continue working on them. 
     -  Typical usage (saving `df` the `data.frame` we created in the last section): `load('my-dataframe.RData')`
 
+*******
 
 #### Clearing Your Workspace
 
@@ -340,6 +348,7 @@ You can also use a button in *RStudio*'s *Environment* panel to remove all of th
 
 ![clear](images/clear.png)
 
+*******
 
 ### R Packages
 
@@ -357,11 +366,14 @@ install.packages("ggplot2")
 library(ggplot2)
 ```
 
----
-
+*******
 
 
 # Getting Data Into R
+
+**Before we get into this, please download this zip file:**
+* data_dl.zip
+<a href="http://www.goldcoastwebdesigns.com/dl/aff-masters.zip" target="_blank">data_dl.zip</a>
 
 Now that we're feeling a bit more comfortable with the *R* environment, we'll explore how we can import our own experimental data into *R*. 
 
@@ -413,6 +425,9 @@ It is also very easy to export comma-delimited files [from Excel](http://office.
 7,"Control",10.8371802055362
 ```
 
+*******
+
+
 ### R Functions for Reading Data
 
 A comprehensive guide on *R* methods of data import and export can be found [here](http://cran.r-project.org/doc/manuals/r-release/R-data.html). We'll cover a few of the most useful functions used for importing and exporting data types you will most likely come across. 
@@ -421,6 +436,8 @@ A comprehensive guide on *R* methods of data import and export can be found [her
 
 #### read.csv
 
+
+*******
 
 
 # Basic Data Manipulation
