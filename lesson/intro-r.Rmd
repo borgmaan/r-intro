@@ -366,27 +366,23 @@ install.packages("ggplot2")
 library(ggplot2)
 ```
 
+
 *******
 
 
 # Getting Data Into R
 
-**Before we get into this, please download this zip file:**
 
-* <a href="https://github.com/borgmaan/r-intro/blob/master/data/data_dl.zip?raw=true" target="_blank">data_dl.zip</a>
+### Example Data
 
 Now that we're feeling a bit more comfortable with the *R* environment, we'll explore how we can import our own experimental data into *R*. 
 
-Below the first few rows of some data in stored [tidy](http://vita.had.co.nz/papers/tidy-data.pdf) format (more on this later). 
+**Before going any further, please download the zip file below and extract its contents somewhere on your computer.**
 
-| id|treatment |      vals|
-|--:|:---------|---------:|
-|  1|Control   |  7.739886|
-|  2|Control   | 11.145914|
-|  3|Control   | 10.113178|
-|  4|Control   |  9.249644|
-|  5|Control   |  9.749033|
-|  6|Control   | 11.048534|
+* <a href="https://github.com/borgmaan/r-intro/blob/master/data/data_dl.zip?raw=true" target="_blank">data_dl.zip</a>
+
+*******
+
 
 ### Data Storage File types
 
@@ -456,3 +452,16 @@ Data analysts have come up with ways to describe the format of the data they wor
 
 
 
+
+
+
+Below the first few rows of some data in stored [tidy](http://vita.had.co.nz/papers/tidy-data.pdf) format (more on this later). 
+
+| id|treatment |      vals|
+|--:|:---------|---------:|
+|  1|Control   |  7.739886|
+|  2|Control   | 11.145914|
+|  3|Control   | 10.113178|
+|  4|Control   |  9.249644|
+|  5|Control   |  9.749033|
+|  6|Control   | 11.048534|

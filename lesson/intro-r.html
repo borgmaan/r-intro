@@ -73,6 +73,7 @@ if (window.hljs && document.readyState && document.readyState === "complete") {
 <li><a href="#r-packages">R Packages</a></li>
 </ul></li>
 <li><a href="#getting-data-into-r">Getting Data Into R</a><ul>
+<li><a href="#example-data">Example Data</a></li>
 <li><a href="#data-storage-file-types">Data Storage File types</a></li>
 <li><a href="#r-functions-for-reading-data">R Functions for Reading Data</a></li>
 </ul></li>
@@ -353,53 +354,15 @@ library(ggplot2)</code></pre>
 </div>
 <div id="getting-data-into-r" class="section level1">
 <h1>Getting Data Into R</h1>
-<p><strong>Before we get into this, please download this zip file:</strong></p>
+<div id="example-data" class="section level3">
+<h3>Example Data</h3>
+<p>Now that we’re feeling a bit more comfortable with the <em>R</em> environment, we’ll explore how we can import our own experimental data into <em>R</em>.</p>
+<p><strong>Before going any further, please download the zip file below and extract its contents somewhere on your computer.</strong></p>
 <ul>
 <li><a href="https://github.com/borgmaan/r-intro/blob/master/data/data_dl.zip?raw=true" target="_blank">data_dl.zip</a></li>
 </ul>
-<p>Now that we’re feeling a bit more comfortable with the <em>R</em> environment, we’ll explore how we can import our own experimental data into <em>R</em>.</p>
-<p>Below the first few rows of some data in stored <a href="http://vita.had.co.nz/papers/tidy-data.pdf">tidy</a> format (more on this later).</p>
-<table>
-<thead>
-<tr class="header">
-<th align="right">id</th>
-<th align="left">treatment</th>
-<th align="right">vals</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="right">1</td>
-<td align="left">Control</td>
-<td align="right">7.739886</td>
-</tr>
-<tr class="even">
-<td align="right">2</td>
-<td align="left">Control</td>
-<td align="right">11.145914</td>
-</tr>
-<tr class="odd">
-<td align="right">3</td>
-<td align="left">Control</td>
-<td align="right">10.113178</td>
-</tr>
-<tr class="even">
-<td align="right">4</td>
-<td align="left">Control</td>
-<td align="right">9.249644</td>
-</tr>
-<tr class="odd">
-<td align="right">5</td>
-<td align="left">Control</td>
-<td align="right">9.749033</td>
-</tr>
-<tr class="even">
-<td align="right">6</td>
-<td align="left">Control</td>
-<td align="right">11.048534</td>
-</tr>
-</tbody>
-</table>
+<hr />
+</div>
 <div id="data-storage-file-types" class="section level3">
 <h3>Data Storage File types</h3>
 <p>The easiest way to store data for import into <em>R</em> is in text files. R has facilities for importing data directly from Excel spreadsheets or from some data base format, but such performing such operations is outside the scope of this course.</p>
@@ -455,6 +418,48 @@ library(ggplot2)</code></pre>
 </div>
 <div id="basic-plotting" class="section level1">
 <h1>Basic Plotting</h1>
+<p>Below the first few rows of some data in stored <a href="http://vita.had.co.nz/papers/tidy-data.pdf">tidy</a> format (more on this later).</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="left">treatment</th>
+<th align="right">vals</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Control</td>
+<td align="right">7.739886</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">Control</td>
+<td align="right">11.145914</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">Control</td>
+<td align="right">10.113178</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">Control</td>
+<td align="right">9.249644</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">Control</td>
+<td align="right">9.749033</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="left">Control</td>
+<td align="right">11.048534</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 
