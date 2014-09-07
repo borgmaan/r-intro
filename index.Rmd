@@ -34,3 +34,4 @@ The Bioinformatics & Biostatistics Core will present the inaugural Core Services
 
 * [Intro R cheatsheet](http://borgmaan.github.io/r-intro/cheatsheet/intro-r-cheatsheet.html)
 * [Course Handout](http://borgmaan.github.io/r-intro/lesson/intro-r.html)
+* [Seminar Slides](http://borgmaan.github.io/r-intro/slides/intro-r.html)

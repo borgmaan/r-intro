@@ -2,33 +2,22 @@
 title: "Introduction to R"
 author: "Andrew Borgman // VARI BBC"
 date: 
-output: 
-  html_document:
-    theme: readable
-    toc: true
+output: ioslides_presentation
 ---
 
 
-<!-- Cheating in some CSS -->
-<style>
-.r {
-  background-color: #ffffff
-}
-</style>
-
-<!-- Cheating in some CSS -->
-
-
-```{r config, echo=FALSE, message=FALSE, eval=TRUE}
-library(knitr)
-opts_chunk$set(results="hide", message=FALSE, fig.show="hide", fig.align="center", tidy=TRUE)
-```
 
 *******
 
 # Disclaimer 
 
 ## *Document is still a work in progress*
+
+```{r config, echo=FALSE, message=FALSE, eval=TRUE}
+library(knitr)
+opts_chunk$set(results="hide", message=FALSE, fig.show="hide", fig.align="center", tidy=TRUE)
+```
+
 
 
 *******
@@ -399,12 +388,14 @@ Flat text files containing data typically have some type of special character ([
 Tab-delimited files are easily [exported from Excel](http://office.microsoft.com/en-us/excel-help/import-or-export-text-txt-or-csv-files-HP010099725.aspx) and are one of the best ways to store data in a flat text file. Tab-delimited files typically have a file extension of `.txt` or `.tsv`.
 
 ```
-ID  Group   Gene1   Gene2   Gene3   Gene4
-Sample 1    Group 1 9.695   4.694   3.733   4.874
-Sample 2    Group 1 8.087   3.276   2.220   3.095
-Sample 3    Group 1 9.885   6.297   5.842   8.233
-Sample 4    Group 1 7.832   -1.286  2.594   -1.089
-Sample 5    Group 1 10.239  4.474   3.300   3.377
+id	treatment	vals
+1	Control	7.73988631317717
+2	Control	11.1459141243514
+3	Control	10.1131777328925
+4	Control	9.24964428771185
+5	Control	9.7490331495698
+6	Control	11.048533802881
+7	Control	10.8371802055362
 ```
 
 #### Comma-Delimited Files
@@ -412,33 +403,24 @@ Sample 5    Group 1 10.239  4.474   3.300   3.377
 It is also very easy to export comma-delimited files [from Excel](http://office.microsoft.com/en-us/excel-help/import-or-export-text-txt-or-csv-files-HP010099725.aspx). Comma-delimited files typically have a file extension of `.csv`.
 
 ```
-"ID","Group","Gene1","Gene2","Gene3","Gene4"
-"Sample 1","Group 1",9.695,4.694,3.733,4.874
-"Sample 2","Group 1",8.087,3.276,2.220,3.095
-"Sample 3","Group 1",9.885,6.297,5.842,8.233
-"Sample 4","Group 1",7.832,-1.286,2.594,-1.089
-"Sample 5","Group 1",10.239,4.474,3.300,3.377
+"id","treatment","vals"
+1,"Control",7.73988631317717
+2,"Control",11.1459141243514
+3,"Control",10.1131777328925
+4,"Control",9.24964428771185
+5,"Control",9.7490331495698
+6,"Control",11.048533802881
+7,"Control",10.8371802055362
 ```
 
 *******
 
 
-### R Options for Reading Data
+### R Functions for Reading Data
 
 A comprehensive guide on *R* methods of data import and export can be found [here](http://cran.r-project.org/doc/manuals/r-release/R-data.html). We'll cover a few of the most useful functions used for importing and exporting data types you will most likely come across. 
 
-#### Using RStudio Interface
-
-*RStudio* gives users the ability to import data with an *Excel*-style interface. This can be done by clicking the *"Import Dataset"* button in RStudio's *Environment* panel. Clicking this button will pop up a file browser 
-
-![data-import](../images/import-data.png)
-
-
-
-
-#### read.table/read.delim
-
-
+#### read.table
 
 #### read.csv
 
@@ -459,33 +441,19 @@ Data analysts have come up with ways to describe the format of the data they wor
 
 # Basic Plotting
 
-### R Graphing Systems
-
-There are three main graphing frameworks available in *R* for creating high quality plots:
-
-#### 1) Base Graphics
-
-The *base* graphics system is the original plotting framework for the *R* language. One can produce anything from very simple to infinitely complex graphics using the *base* system; however, creating simple plots with annotation elements (e.g. coloring, legends, etc) can be cumbersome for new *R* users. A good demo of some of the key features of the base graphics system [can be found here](http://rpubs.com/SusanEJohnston/7953). We will not be covering *base* graphics in this tutorial.
-
-#### 2) Lattice Graphics
-
-The [lattice package](http://cran.r-project.org/web/packages/lattice/index.html) was developed as an attempt to improve on base *R* graphics by providing better defaults and the ability to easily display multivariate relationships. Lattice graphics 
-
-#### 3) ggplot2 Graphics
-
-`ggplot2` is a plotting system for *R*, based on the [grammar of graphics](http://www.amazon.com/The-Grammar-Graphics-Statistics-Computing/dp/0387245448), which tries to take the good parts of *base* and *lattice* graphics and none of the bad parts. It takes care of many of the fiddly details that make plotting a hassle (like drawing legends) as well as providing a powerful model of graphics that makes it easy to produce complex multi-layered graphics (taken from [ggplot2 site](http://ggplot2.org/)). `ggplot2` allows intro *R* users to create high quality data visualizations with little effort using an intuitive plotting syntax. 
-
-An excellent presentation with info & examples for all three systems can be found [here](http://faculty.ucr.edu/~tgirke/HTML_Presentations/Manuals/Rgraphics/Rgraphics.pdf). We'll briefly discuss how to create excellent using graphs with the `ggplot2` graphics system in the following section. 
-
-
-### ggplot2 for Beginners
-
-# Thanks!
-
-#### Thanks so much for attending!!
 
 
 
 
 
 
+Below the first few rows of some data in stored [tidy](http://vita.had.co.nz/papers/tidy-data.pdf) format (more on this later). 
+
+| id|treatment |      vals|
+|--:|:---------|---------:|
+|  1|Control   |  7.739886|
+|  2|Control   | 11.145914|
+|  3|Control   | 10.113178|
+|  4|Control   |  9.249644|
+|  5|Control   |  9.749033|
+|  6|Control   | 11.048534|
