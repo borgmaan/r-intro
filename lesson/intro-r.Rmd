@@ -483,11 +483,83 @@ People [often are surprised](http://www.nytimes.com/2014/08/18/technology/for-bi
 
 ### Subsetting
 
-Oftentimes, analysts will want to work with only a subset of their data at one time. A definitive guide on subsetting in *R* can be found [here](http://adv-r.had.co.nz/Subsetting.html). There are many ways to subset data in *R*, but we'll cover the most useful here.
+* Oftentimes, analysts will want to work with only a subset of their data at one time
+* A definitive guide on subsetting in *R* can be found [here](http://adv-r.had.co.nz/Subsetting.html)
+* There are many ways to subset data in *R*, but we'll touch on a couple important ones
 
-### Wide vs. Long Format
+#### Subsetting with Numeric Indicies
 
-Data analysts have come up with ways to describe the format of the data they work in. Most of the data you come into contact with will be in either [wide or long](http://en.wikipedia.org/wiki/Wide_and_narrow_data) format. 
+```
+> gene.exprs.long[1:5, ] # print the first 5 rows
+        ID   Group  Gene Expression
+1 Sample 1 Group 1 Gene1   9.695228
+2 Sample 2 Group 1 Gene1   8.087463
+3 Sample 3 Group 1 Gene1   9.885696
+4 Sample 4 Group 1 Gene1   7.832890
+5 Sample 5 Group 1 Gene1  10.239599
+```
+
+```
+> gene.exprs.long[1:5, 1:2] # print the first 5 rows and columns 1 & 2
+        ID   Group
+1 Sample 1 Group 1
+2 Sample 2 Group 1
+3 Sample 3 Group 1
+4 Sample 4 Group 1
+5 Sample 5 Group 1
+```
+
+
+#### *subset* Function
+
+* Usage: `subset(dataset, logical conditions)`
+
+```
+> subset(gene.exprs.long, ID == 'Sample 1') # All Sample 1 measures
+          ID   Group  Gene Expression
+1   Sample 1 Group 1 Gene1   9.695228
+51  Sample 1 Group 1 Gene2   4.694323
+101 Sample 1 Group 1 Gene3   3.733354
+151 Sample 1 Group 1 Gene4   4.874305
+```
+
+```
+> subset(gene.exprs.long, Expression > 10) # gene expression > 10
+          ID   Group  Gene Expression
+5   Sample 5 Group 1 Gene1   10.23960
+6   Sample 6 Group 1 Gene1   11.01402
+10 Sample 10 Group 1 Gene1   10.10460
+13 Sample 13 Group 2 Gene1   10.21796
+16 Sample 16 Group 2 Gene1   10.03342
+46 Sample 46 Group 5 Gene1   10.11114
+```
+
+#### *subset* Function
+
+* This can be useful for stats when you are just starting out:
+
+```
+> gene1 <- subset(gene.exprs.long, Gene == 'Gene1') # only data for gene 1
+> summary(aov(Expression ~ Group, data = gene1)) # run an ANOVA on it
+            Df Sum Sq Mean Sq F value  Pr(>F)   
+Group        4  13.08   3.271   4.879 0.00236 **
+Residuals   45  30.17   0.670                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+<div class="red2">
+Look! *R* prints stars!! ;)
+</div>
+
+#### Wide vs. Long Format
+
+* Data analysts have come up with ways to describe the format of the data they work in 
+* Most of the data you come into contact with will be in either [wide or long](http://en.wikipedia.org/wiki/Wide_and_narrow_data) format
+* See data files in example zip folder for wide and long versions of same data set
+* The [reshape2 package](http://cran.r-project.org/web/packages/reshape2/index.html) is good for going from wide to long and back 
+    - here's a [good tutorial](http://seananderson.ca/2013/10/19/reshape.html)
+* Keeping your data in *long* format will make your life in *R* easier!
 
 
 # Basic Plotting
@@ -516,6 +588,76 @@ An excellent presentation with info & examples for all three systems can be foun
 * [Excellent quick overview of ggplot2](http://www.ceb-institute.org/bbs/wp-content/uploads/2011/09/handout_ggplot2.pdf)
 * [In depth guide of ggplot2](http://www.ling.upenn.edu/~joseff/avml2012/)
 * [Quick reference for ggplot2](http://sape.inf.usi.ch/quick-reference/ggplot2)
+
+### qplot() Usage
+
+* `qplot()` is the easiest way to get started with `ggplot2`
+* If you haven't done so already, please run the following commands:
+
+```{r, eval=FALSE}
+# Install only once.
+install.packages("ggplot2")
+
+# Load the package every time you want to use it.
+library(ggplot2)
+```
+
+#### Hello qplot()!
+
+```{r, include = F, eval = T}
+library(ggplot2)
+gene.exprs.long <- read.delim("../data/data_dl/gene-exprs-long.tsv")
+```
+
+* Let's plot our gene expression data set!
+* First, a basic `qplot` call:
+
+```{r, eval = T, results='markup', fig.show='asis', fig.height = 4, fig.width = 4.5}
+qplot(x = Gene, y = Expression, data = gene.exprs.long)
+```
+
+#### Change the Plot Type!
+
+* `qplot` guesses what the best graphical display would be given your data
+* You can override this to get other graphics
+    - Done by specifying the `geom` option
+
+```{r, eval = T, results='markup', fig.show='asis', fig.height = 4, fig.width = 4.5}
+qplot(x = Gene, y = Expression, data = gene.exprs.long, geom = 'boxplot')
+```
+
+#### Add Some Color
+
+* The `color` option adds color!
+
+```{r, eval = T, results='markup', fig.show='asis', fig.height = 4, fig.width = 4.5}
+qplot(x = Gene, y = Expression, data = gene.exprs.long, color = Gene)
+```
+
+#### Add Some Color
+
+* Or `fill` for some `geom`s
+
+```{r, eval = T, results='markup', fig.show='asis', fig.height = 4, fig.width = 4.5}
+qplot(x = Gene, y = Expression, data = gene.exprs.long, geom = 'boxplot', 
+      fill = Gene)
+```
+
+#### Or Make Some Facets
+
+```{r, eval = T, results='markup', fig.show='asis', fig.height = 4, fig.width = 4.5}
+qplot(x = Group, y = Expression, data = gene.exprs.long, fill = Group, 
+      facets = ~ Gene, geom = 'boxplot')
+```
+
+#### Or Make Some Facets & Make It Pretty
+
+```{r, eval = T, results='markup', fig.show='asis', fig.height = 4, fig.width = 4.5}
+qplot(x = Group, y = Expression, data = gene.exprs.long, color = Group, 
+    facets = ~Gene, geom = "jitter") + theme_bw() + 
+    scale_color_brewer(type = 'qual', palette = "Dark2") + 
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
 
 
 # Thanks!

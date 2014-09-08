@@ -31,7 +31,7 @@ opts_chunk$set(results="hide", message=FALSE, fig.show="hide", fig.align="center
 
 ## What is *R*?
 
-* First and foremost, a fully functional programming language
+* A fully functional programming language!
 * Originally developed @ Bell Labs for interactive data analysis
     - Was called *S* back then (~1976)
 * Open sourced in 1993 under the name *R*
@@ -345,20 +345,22 @@ And we'll be able to see some objects if we add them:
 
 ## Saving Your Workspace for Later
 
-* `save.image`: Lets you save a snapshot of your entire workspace to a `*.RData` file.
+* `save.image`: saves a snapshot of entire workspace to a file
     - Typical usage: `save.image('my-work.RData')`
-* `save`: Lets you save a snapshot of a few specified objects to a `*.RData` file.
-    - This can be useful if you only want to save one or 2 things (like a modified data set).
-    - Typical usage (saving `df` the `data.frame` we created in the last section): `save(df, file = 'my-dataframe.RData')`
-* `load`: Lets you load your saved `*.RData` files back in to *R* ot continue working on them. 
-    -  Typical usage (saving `df` the `data.frame` we created in the last section): `load('my-dataframe.RData')`
+* `save`: saves a snapshot of a few specified objects to a file.
+    - Useful if you only want to save one or 2 things (like a modified data set).
+    - To save, `df`, the `data.frame` we created in the last section: 
+    - `save(df, file = 'my-dataframe.RData')`
+* `load`: loads your saved `*.RData` files back in to *R*
+    -  To load, `df`, the `data.frame` we just saved: 
+    - `load('my-dataframe.RData')`
 
 ## Clearing Your Workspace
 
 * There are two main ways to clear your workspace in *R*/*RStudio* 
     1. using the `rm()` function to remove objects and 
     2. using the *Clear* button in *RStudio*. 
-* The `rm()` command allows you to selectively remove objects from your *R* session when they are no longer needed 
+* `rm()` lets you remove objects from your *R* session when they aren't needed
 * Example of the usage:
 
 ```
@@ -606,7 +608,7 @@ gene.exprs.long <- read.delim("../data/data_dl/gene-exprs-long.tsv")
 * Let's plot our gene expression data set!
 * First, a basic `qplot` call:
 
-```{r, eval = T, results='markup', fig.show='asis'}
+```{r, eval = T, results='markup', fig.show='asis', fig.height = 4, fig.width = 4.5}
 qplot(x = Gene, y = Expression, data = gene.exprs.long)
 ```
 
@@ -633,19 +635,24 @@ qplot(x = Gene, y = Expression, data = gene.exprs.long, color = Gene)
 * Or `fill` for some `geom`s
 
 ```{r, eval = T, results='markup', fig.show='asis', fig.height = 4, fig.width = 4.5}
-qplot(x = Gene, y = Expression, data = gene.exprs.long, geom = 'boxplot', fill = Gene)
+qplot(x = Gene, y = Expression, data = gene.exprs.long, geom = 'boxplot', 
+      fill = Gene)
 ```
 
 ## Or Make Some Facets
 
 ```{r, eval = T, results='markup', fig.show='asis', fig.height = 4, fig.width = 4.5}
-qplot(x = Group, y = Expression, data = gene.exprs.long, fill = Group, facets = ~ Gene, geom = 'boxplot')
+qplot(x = Group, y = Expression, data = gene.exprs.long, fill = Group, 
+      facets = ~ Gene, geom = 'boxplot')
 ```
 
 ## Or Make Some Facets & Make It Pretty
 
 ```{r, eval = T, results='markup', fig.show='asis', fig.height = 4, fig.width = 4.5}
-qplot(x = Group, y = Expression, data = gene.exprs.long, color = Group, facets = ~ Gene, geom = 'jitter') + theme_bw()
+qplot(x = Group, y = Expression, data = gene.exprs.long, color = Group, 
+    facets = ~Gene, geom = "jitter") + theme_bw() + 
+    scale_color_brewer(type = 'qual', palette = "Dark2") + 
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 
 
