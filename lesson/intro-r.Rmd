@@ -30,7 +30,7 @@ opts_chunk$set(results="hide", message=FALSE, fig.show="hide", fig.align="center
 
 # External Resources
 
-Such a short tutorial cannot cover the vast *R* universe in much detail. Fortunately, one of the greatest things about *R* is the vibrant community supporting it. One can find endless tutorials, books, presentations, etc. on just about any aspect of *R* you want -- from beginner topics to advances matters. Once you have some familiarity with *R*, you'll be able to "Google your way out" of most problems you run into. Here's a small list of useful resources:
+Such a short tutorial cannot cover the vast *R* universe in much detail. Fortunately, one of the greatest things about *R* is the vibrant community supporting it. One can find endless tutorials, books, presentations, etc. on just about any aspect of *R* you want -- from beginner topics to advanced matters. Once you have some familiarity with *R*, you'll be able to *"Google your way out"* of most problems you run into. Here's a small list of useful resources:
 
 * [RStudio provides many online learning resources](http://www.rstudio.com/resources/training/online-learning/)
 * [And even more helpful links buried in an RStudio wiki page](https://support.rstudio.com/hc/en-us/articles/200552336-Getting-Help-with-R)
@@ -267,7 +267,7 @@ You'll see that *R* gives us a hint and is telling us to use the function `??`. 
 
 We see the same search results returned in the *RStudio* help pane. 
 
-#### **And, if all else fails, try *Google-ing* to see if the function you seek exists!!**
+#### **And, if all else fails, try *Googleing* to see if the function you seek exists!!**
 
 *******
 

@@ -2,7 +2,8 @@
 title: "Introduction to R"
 author: "Andrew Borgman // VARI BBC"
 output: 
-    ioslides_presentation
+    ioslides_presentation:
+        css: styles.css
 ---
 
 <!-- excel-output.png
@@ -12,7 +13,7 @@ excel-csv.png -->
 
 ```{r config, echo=FALSE, message=FALSE, eval=TRUE}
 library(knitr)
-opts_chunk$set(results="hide", message=FALSE, fig.show="hide", fig.align="center", tidy=TRUE)
+opts_chunk$set(results="hide", message=FALSE, fig.show="hide", fig.align="center", tidy=TRUE, eval = F)
 ```
 
 
@@ -23,11 +24,11 @@ opts_chunk$set(results="hide", message=FALSE, fig.show="hide", fig.align="center
 
 * This short tutorial can't cover the vast *R* universe 
 * But... *R* has vibrant community supporting it! 
-* You can find endless tutorials, books, presentations, etc. on just about any aspect of *R* you want -- from beginner topics to advances matters. 
+* You can find endless tutorials, books, presentations, etc. on just about any aspect of *R* you want -- from beginner topics to advanced matters. 
 * Goal for today:
 
 <div class="red2" class="centered">
-Give you enough *R* vocab, so you'll be able to "Google your way out" of most problems you run into
+Give you enough *R* vocab, so you'll be able to *"Google your way out"* of most problems you run into
 </div>
 
 
@@ -101,9 +102,12 @@ x <- 3
 [1] 3
 ```
 
+
 ## Assignment
 
-* You will get an error if you type the name of an variable that does not have an assigned object
+<div class="red2">
+You will get an error if you type the name of an variable that does not have an assigned object: <br/>
+</div>
 
 ```
 > y
@@ -122,9 +126,9 @@ More information on general *R* programming style can be found [here](http://r-p
 
 # R Data Structures
 
-## R Data Types
+## R Data Types {.bigger}
 
-Objects in *R* can be a number of different types. Here we'll discuss the three types you are most likely to encounter. 
+Objects in *R* can be a number of different types. Next, we'll discuss the three types you are most likely to encounter. 
 
 1. **Character**: character objects are letters, words, or strings.
     - Ex: `'j'`, `'hello'`, `'treatment A'`
@@ -163,7 +167,7 @@ You can access values inside of a vector by *subsetting* it with the `[]` operat
 [1] "three"
 ```
 
-## Matricies/Arrays
+## Matricies
 
 Matrices and arrays are vectors with *dimensions*. Since they are vectors, they can only contain elements of the same *type*. Matrices have 2 dimensions (rows & columns) and are created with the `matrix` function:
 
@@ -177,18 +181,19 @@ Matrices and arrays are vectors with *dimensions*. Since they are vectors, they 
 [5,]    5   10   15   20   25
 ```
 
-Arrays act very similar to matrices, but can have more than 2 dimensions. Here we create a three dimensional array (cube of numbers):
+We can subset arrays in matrices in the same way we did vectors, but we must be conscious of their dimensionality. For a matrix, `m`, we would access the data stored in row 2 and column 5 by typing `m[2, 5]`.
 
 
-We can subset arrays in matrices in the same way we did vectors, but we must be conscious of their dimensionality. For a matrix, `m`, we would access the data stored in row 2 and column 5 by typing `m[2, 5[`.
+## Data Frames
 
-
-#### Data Frames
-
-Data frames are the *R* data structure you will deal with most frequently as a new useR. *R*'s data import/export functions will return these by default. They can also be created using the `data.frame()` function (see `?data.frame` for more options). Here's a quick example creating some dummy experimental data:
+* Data frames are the *R* data structure you will deal with most frequently
+* *R*'s data import/export functions will return these by default 
+* They can also be created using the `data.frame()` function
+* Here's a quick example creating some dummy experimental data:
 
 ```
-> data.frame(group = rep(c('trt', 'ctrl'), each=5), response = rnorm(10))
+> data.frame(group = rep(c('trt', 'ctrl'), each=4), 
+            response = rnorm(8))
    group    response
 1    trt  0.01231700
 2    trt  0.55028627
@@ -198,25 +203,39 @@ Data frames are the *R* data structure you will deal with most frequently as a n
 6   ctrl -0.76686861
 7   ctrl  0.03573818
 8   ctrl  1.69159332
-9   ctrl  0.09612385
-10  ctrl  0.60415288
 ```
 
 
-#### Lists
+## Lists
 
-Like vectors, lists are containers allowing one to store multiple *R* objects in the same parent object. Unlike vectors, lists do not enforce the rule that all of the elements must be of the same type. For example, we'll create a list with some info about a person:
+* Lists are containers allowing to store multiple *R* objects in the same parent object 
+* Unlike vectors, enclosed data can have different *types* 
+* As an example, we'll create a list with some info about a person:
 
-```{r}
-person <- list(first = 'andrew', last = 'borgman', age = 25, interests = c('math', 'computers', 'biology'))
+```
+> person <- list(first = 'andrew', last = 'borgman', age = 25)
+> person
+$first
+[1] "andrew"
+
+$last
+[1] "borgman"
+
+$age
+[1] 25
 ```
 
+# Functions
 
-### R Built-In Functions
 
-*R* also provides users with many built in functions allowing users to perform a range of tasks -- from computing summary statistics, to fitting linear models, to generating random variables. There are lots of good lists [out](http://www.sr.bham.ac.uk/~ajrs/R/r-function_list.html) [there](http://www.statmethods.net/management/functions.html). 
+## R Built-In Functions
 
-One of best ways to discover all the built-in helpers *R* has to offer is by reading [lists of](http://www.statmethods.net/management/functions.html) [available functions](http://adv-r.had.co.nz/Vocabulary.html). In most cases, *R* functions have been given logical names. For example, the `mean` function is used to find the average of a vector of numbers:
+* *R* provides users with many built in functions 
+    - These allow users to perform a range of tasks
+    - Computing summary statistics, to fitting linear models, to generating random variables. 
+* There are lots of good lists of functions [out](http://www.sr.bham.ac.uk/~ajrs/R/r-function_list.html) [there](http://www.statmethods.net/management/functions.html)
+* In most cases, *R* functions have been given logical names. 
+* Ex: the `mean` function is used to find the average of a vector of numbers:
 
 ```
 > my_data <- c(10, 22, 44, 55, 14, 66)
@@ -224,23 +243,33 @@ One of best ways to discover all the built-in helpers *R* has to offer is by rea
 [1] 35.16667
 ```
 
-*R* comes with a great deal of built in documentation. The fastest way to search for built in functions is from *RStudio*'s help search tool. Let's say we want to find a function that computes the standard deviation of a vector of numbers. We would choose the help tab in the *RStudio* viewer pane, and type something like "standard deviation" in the search box.
+## R Function Documentation
 
 ![rstudio-help-annot](../images/rstudio-help-annot.png)
 
 
- In the days before *RStudio*, all of this searching took place on the command line. You may find this is a more convenient way to search for *R* help, so we'll cover it here. The `help()` and `?` functions can be used to search the documentation for functions matching the inputted text. The following functions perform the same task -- searching *R*'s help documentation for any functions named `mean`.
+## R Function Documentation
+
+* Pre-*RStudio*, all of this searching took place on the command line
+* You may find this is a more convenient way to search for *R* help
+* The `help()` and `?` functions can be used to search the documentation for functions matching the inputted text
+* The following functions both search *R*'s help documentation for any functions named `mean`
 
 ```{r, eval=FALSE, tidy=FALSE}
 ?mean
 help(mean)
 ```
 
-If we got lucky and picked the right name of the function, *RStudio* will pop up a help window showing the function documentation like this:
+## R Function Documentation
 
 ![rstudio-help](../images/rstudio-help.png)
 
-But sometimes we don't know the name of the function we seek. Fortunately, *R*'s documentation search is flexible enough to accomodate that. Let's try to find a function that lets us compute the standard deviation of a vector of numbers. First, we'll try a serach with the name of the function used in *Excel* software
+## R General Searching
+
+* But sometimes we don't know the name of the function we seek
+* Fortunately, *R*'s documentation search is flexible enough to accommodate that 
+* Let's try to find a function that lets us compute the standard deviation of a vector of numbers. 
+* First, we'll try a search with the name of the function used in *Excel* software
 
 ```
 > ?stdev
@@ -248,21 +277,26 @@ No documentation for ‘STDEV’ in specified packages and libraries:
 you could try ‘??STDEV’
 ```
 
-You'll see that *R* gives us a hint and is telling us to use the function `??`. This function works like the search box we used to find help in *RStudio*. Let's search for "standard deviation":
+## R General Searching
+
+* You'll see that *R* gives us a hint and is telling us to use the function `??`. 
+* This function works like the search box we used to find help in *RStudio*. Let's search for "standard deviation":
 
 ```{r, eval=FALSE, tidy=FALSE}
 ??"standard deviation"
 ```
 
-We see the same search results returned in the *RStudio* help pane. 
+Entering this, we see the same kind of search results returned in the *RStudio* help pane. 
 
-#### **And, if all else fails, try *Google-ing* to see if the function you seek exists!!**
+## R General Searching
+
+### **And, if all else fails, try *Googleing* to see if the function you seek exists!!**
 
 
 
-### The R Workspace
+# The R Workspace
 
-#### Defining & Viewing the Workspace
+## Defining & Viewing the Workspace
 
 The *R* workspace can be thought of as a container holding all of the objects you've created duing your *R* session. You can print a list of all of the objects in your current workspace using the `ls()` function. If we start a new *R* session, our workspace will be empty:
 
@@ -282,19 +316,15 @@ And we'll be able to see some objects if we add them:
 [1] "df" "x"  "y"  "z" 
 ```
 
-You can also keep tabs on the objects in your workspace using the *Environment* panel in *RStudio*. 
+## Viewing Your Workspace in *RStudio*
 
 ![env-panel](../images/env-panel.png)
 
-Clicking on object in the environment panel will allow you to view the data behind it.
+## Viewing Your Data in *RStudio*
 
 ![env-click](../images/env-click.png)
 
-*******
-
-#### Saving Your Workspace for Later
-
-Oftentimes, your analysis and work on a data set will span more than one *R* session. *R* provides built in facilities for saving snapshots of your workspace so you can easily pick up where you left off and continue your analysis. This can be very useful for beginner *R* users who still do most of their work interactively. Here's a breakdown of some useful files for 
+## Saving Your Workspace for Later
 
 * `save.image`: Lets you save a snapshot of your entire workspace to a `*.RData` file.
     - Typical usage: `save.image('my-work.RData')`
@@ -304,12 +334,13 @@ Oftentimes, your analysis and work on a data set will span more than one *R* ses
 * `load`: Lets you load your saved `*.RData` files back in to *R* ot continue working on them. 
     -  Typical usage (saving `df` the `data.frame` we created in the last section): `load('my-dataframe.RData')`
 
-*******
+## Clearing Your Workspace
 
-#### Clearing Your Workspace
-
-There are two main ways to clear your workspace in *R*/*RStudio*: 1) using the `rm()` function to remove objects and 2) using the *Clear* button in *RStudio*. 
-The `rm()` command allows you to selectively remove objects from your *R* session when they are no longer needed (see `?rm` for more details). Here's an example of the usage:
+* There are two main ways to clear your workspace in *R*/*RStudio* 
+    1. using the `rm()` function to remove objects and 
+    2. using the *Clear* button in *RStudio*. 
+* The `rm()` command allows you to selectively remove objects from your *R* session when they are no longer needed 
+* Example of the usage:
 
 ```
 > ls() # start in an empty workspace
@@ -333,13 +364,16 @@ You can also use a button in *RStudio*'s *Environment* panel to remove all of th
 
 ![clear](../images/clear.png)
 
-*******
 
-### R Packages
+## R Packages
 
-Packages are what make *R* so great. Packages allow *R* users to develop and **share** new code to extend the language -- e.g. implementing a new statistical model for analyzing microarrays, creating an awesome new graph to show copy number alterations in tumor samples, etc. *R* has become the *lingua franca* for statisticians developing new statistical techniques and has been widely adopted in the bioinformatics community ([Bioconductor](http://bioconductor.org/)).
+* Packages are what make *R* so great. 
+* Packages allow *R* users to develop and **share** new code to extend the language
+    - e.g. implementing a new statistical model for analyzing microarrays, creating an awesome new graph to show copy number alterations in tumor samples, etc.
+* *R* has become the *lingua franca* for statisticians developing new statistical techniques
+* Has also been widely adopted in the bioinformatics community ([Bioconductor](http://bioconductor.org/))
 
-#### CRAN
+## CRAN
 
 Most generic *R* packages are hosted on the Comprehensive *R* Archive Network [CRAN](http://cran.us.r-project.org/). To install one of these packages, you would use `install.packages("packagename")`. You only need to install a package once, then load it each time using `library(packagename)`. Here's how one would install and load the `ggplot2` package.
 
@@ -352,13 +386,10 @@ library(ggplot2)
 ```
 
 
-*******
-
-
 # Getting Data Into R
 
 
-### Example Data
+## Example Data
 
 Now that we're feeling a bit more comfortable with the *R* environment, we'll explore how we can import our own experimental data into *R*. 
 
@@ -366,19 +397,18 @@ Now that we're feeling a bit more comfortable with the *R* environment, we'll ex
 
 * <a href="https://github.com/borgmaan/r-intro/blob/master/data/data_dl.zip?raw=true" target="_blank">data_dl.zip</a>
 
-*******
-
-
-### Data Storage File types
+## Data Storage File types
 
 The easiest way to store data for import into *R* is in text files. R has facilities for importing data directly from Excel spreadsheets or from some data base format, but such performing such operations is outside the scope of this course. 
 
 Flat text files containing data typically have some type of special character ([delimiter](http://en.wikipedia.org/wiki/Delimiter-separated_values)) -- think: tab, semicolon, space -- for separating different columns of data. Data stored in text files most commonly falls into the following formats.
 
 
-#### Tab-Delimited Files
+## Tab-Delimited Files
 
-Tab-delimited files are easily [exported from Excel](http://office.microsoft.com/en-us/excel-help/import-or-export-text-txt-or-csv-files-HP010099725.aspx) and are one of the best ways to store data in a flat text file. Tab-delimited files typically have a file extension of `.txt` or `.tsv`.
+* Tab-delimited files are easily exported from Excel
+* One of the best ways to store data in a flat text file 
+* Typically have a file extension of `.txt` or `.tsv`.
 
 ```
 ID  Group   Gene1   Gene2   Gene3   Gene4
@@ -389,9 +419,17 @@ Sample 4    Group 1 7.832   -1.286  2.594   -1.089
 Sample 5    Group 1 10.239  4.474   3.300   3.377
 ```
 
-#### Comma-Delimited Files
+## Tab-Delimited Files
 
-It is also very easy to export comma-delimited files [from Excel](http://office.microsoft.com/en-us/excel-help/import-or-export-text-txt-or-csv-files-HP010099725.aspx). Comma-delimited files typically have a file extension of `.csv`.
+![excel-tsv](../images/excel-output.png)
+
+`File -> Save As -> Tab-Delimited Text`
+
+
+## Comma-Delimited Files
+
+* It is also very easy to export comma-delimited files from Excel
+* Comma-delimited files typically have a file extension of `.csv`.
 
 ```
 "ID","Group","Gene1","Gene2","Gene3","Gene4"
@@ -402,97 +440,128 @@ It is also very easy to export comma-delimited files [from Excel](http://office.
 "Sample 5","Group 1",10.239,4.474,3.300,3.377
 ```
 
-*******
+## Comma-Delimited Files
 
+![excel-csv](../images/excel-csv.png)
 
-### R Options for Reading Data
+`File -> Save As -> Comma Separated Values`
 
-A comprehensive guide on *R* methods of data import and export can be found [here](http://cran.r-project.org/doc/manuals/r-release/R-data.html). We'll cover a few of the most useful functions used for importing and exporting data types you will most likely come across. 
-
-#### Using RStudio Interface
-
-*RStudio* gives users the ability to import data with an *Excel*-style interface. This can be done by clicking the *"Import Dataset"* button in RStudio's *Environment* panel. Clicking this button will pop up a file browser -- navigate to the folder you downloaded and select the file `gene-exprs-long.tsv`.
+## Importing Data with RStudio
 
 ![data-import](../images/import-data.png)
 
-The import screen allows you to specify a number of options detailing specifics about the data file being imported and the object that will be imported into the *R* environment. 
-
-* **Name:** allows users to specify the name of the object being imported into the *R* environment
-*  **Heading:** does the data you are importing have headers specifying the names for you columns?
-*  **Separator:** allows you to specify the *delimiter* separating columns in the data being imported (e.g. "Tab" for `.tsv`, "Comma" for `.csv`, etc.)
-* **Decimal:** what character represents the decimal in you data (comma for European data :))
-* **Quote:** what character indicates the *quote* character in your text file. Quotes are typically used to indicate a full string between delimiters 
-* **na.strings:** what set of characters in your data indicates missing data (`""`, `NA`, `999`)
-* **Strings as factors:** do you want your strings [imported as factors](http://stackoverflow.com/questions/8652694/r-use-of-factor)?
+## Using RStudio Import Interface
 
 ![data-import-screen](../images/import-screen-1.png)
 
-You can check to see that your chosen options are importing your `data.frame` correctly by viewing the output in the *"Data Frame"* section of the *"Import Dataset"* window:
+## Using RStudio Import Interface
 
 ![data-import-screen](../images/import-screen-2.png)
 
-After clicking import, we can see that *RStudio* has generated the necessary *R* code in the console to import the data file and that our `data.frame` object has been added to the workspace:
+## Using RStudio Import Interface
 
 ![data-import-screen](../images/import-results.png)
 
+## read.table/read.delim/read.csv
 
-
-#### read.table/read.delim
-
-In the previous section, we saw *RStudio* generate a `read.delim` function to import our `.tsv` data frame. `read.delim` is a special alternative to *R*'s more general `read.table` function (`?read.table` for details). `read.table` is *R*'s workhorse function for data I/O. As you become more comfortable with *R*, it will become your *de facto* method for importing data. For now, it would be instructive to observe
-
-#### read.csv
-
-`read.csv` is another special alternative to `read.table`. They are based on the same underlying function, but `read.csv` has default arguments for reading `.csv` files. For more info, type `?read.csv` into the *R* console. 
-
-
-*******
+* Just saw *RStudio* generate a `read.delim` function to import our `.tsv` data frame
+* `read.delim` is a special alternative to *R*'s more general `read.table` function (`?read.table` for details)
+* `read.csv` is another special alternative to `read.table`
+* `read.csv` & `read.delim` have 
 
 
 # Basic Data Manipulation
 
-People [often are surprised](http://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html?_r=0) at the amount of time analysts spend manipulating/cleaning/munging [data analysis]
+## Subsetting
 
-### Subsetting
+* Oftentimes, analysts will want to work with only a subset of their data at one time
+* A definitive guide on subsetting in *R* can be found [here](http://adv-r.had.co.nz/Subsetting.html)
+* There are many ways to subset data in *R*, but we'll touch on a couple important ones
 
-Oftentimes, analysts will want to work with only a subset of their data at one time. A definitive guide on subsetting in *R* can be found [here](http://adv-r.had.co.nz/Subsetting.html). There are many ways to subset data in *R*, but we'll cover the most useful here.
+## Subsetting with Numeric Indicies
 
-### Wide vs. Long Format
+```
+> gene.exprs.long[1:5, ] # print the first 5 rows
+        ID   Group  Gene Expression
+1 Sample 1 Group 1 Gene1   9.695228
+2 Sample 2 Group 1 Gene1   8.087463
+3 Sample 3 Group 1 Gene1   9.885696
+4 Sample 4 Group 1 Gene1   7.832890
+5 Sample 5 Group 1 Gene1  10.239599
+```
 
-Data analysts have come up with ways to describe the format of the data they work in. Most of the data you come into contact with will be in either [wide or long](http://en.wikipedia.org/wiki/Wide_and_narrow_data) format. 
+```
+> gene.exprs.long[1:5, 1:2] # print the first 5 rows and columns 1 & 2
+        ID   Group
+1 Sample 1 Group 1
+2 Sample 2 Group 1
+3 Sample 3 Group 1
+4 Sample 4 Group 1
+5 Sample 5 Group 1
+```
+
+
+## *subset* Function
+
+* Usage: `subset(dataset, logical conditions)`
+
+```
+> subset(gene.exprs.long, ID == 'Sample 1') # All Sample 1 measures
+          ID   Group  Gene Expression
+1   Sample 1 Group 1 Gene1   9.695228
+51  Sample 1 Group 1 Gene2   4.694323
+101 Sample 1 Group 1 Gene3   3.733354
+151 Sample 1 Group 1 Gene4   4.874305
+```
+
+```
+> subset(gene.exprs.long, Expression > 10) # gene expression > 10
+          ID   Group  Gene Expression
+5   Sample 5 Group 1 Gene1   10.23960
+6   Sample 6 Group 1 Gene1   11.01402
+10 Sample 10 Group 1 Gene1   10.10460
+13 Sample 13 Group 2 Gene1   10.21796
+16 Sample 16 Group 2 Gene1   10.03342
+46 Sample 46 Group 5 Gene1   10.11114
+```
+
+
+## Wide vs. Long Format
+
+* Data analysts have come up with ways to describe the format of the data they work in 
+* Most of the data you come into contact with will be in either [wide or long](http://en.wikipedia.org/wiki/Wide_and_narrow_data) format
+* See data files in example zip folder for wide and long versions of same data set
+* 
 
 
 # Basic Plotting
 
-### R Graphing Systems
+## R Graphing Systems
 
 There are three main graphing frameworks available in *R* for creating high quality plots:
 
-#### 1) Base Graphics
+1. Base Graphics
+2. Lattice Graphics
+3. ggplot2 Graphics
 
-The *base* graphics system is the original plotting framework for the *R* language. One can produce anything from very simple to infinitely complex graphics using the *base* system; however, creating simple plots with annotation elements (e.g. coloring, legends, etc) can be cumbersome for new *R* users. A good demo of some of the key features of the base graphics system [can be found here](http://rpubs.com/SusanEJohnston/7953). We will not be covering *base* graphics in this tutorial.
+**I would suggest learning `ggplot2`**
 
-#### 2) Lattice Graphics
-
-The [lattice package](http://cran.r-project.org/web/packages/lattice/index.html) was developed as an attempt to improve on base *R* graphics by providing better defaults and the ability to easily display multivariate relationships. Lattice graphics 
-
-#### 3) ggplot2 Graphics
+## ggplot2 Graphics
 
 `ggplot2` is a plotting system for *R*, based on the [grammar of graphics](http://www.amazon.com/The-Grammar-Graphics-Statistics-Computing/dp/0387245448), which tries to take the good parts of *base* and *lattice* graphics and none of the bad parts. It takes care of many of the fiddly details that make plotting a hassle (like drawing legends) as well as providing a powerful model of graphics that makes it easy to produce complex multi-layered graphics (taken from [ggplot2 site](http://ggplot2.org/)). `ggplot2` allows intro *R* users to create high quality data visualizations with little effort using an intuitive plotting syntax. 
 
-An excellent presentation with info & examples for all three systems can be found [here](http://faculty.ucr.edu/~tgirke/HTML_Presentations/Manuals/Rgraphics/Rgraphics.pdf). I would strongly suggest learning and using `ggplot2` for all of your *R* plotting needs. I'll link to some useful tutorials in the next section.
 
-### ggplot2 for Beginners
+## ggplot2 for Beginners
 
 * [Nice walkthrough of using `qplot` to make complex graphics](https://github.com/echen/ggplot2-tutorial)
 * [Excellent quick overview of ggplot2](http://www.ceb-institute.org/bbs/wp-content/uploads/2011/09/handout_ggplot2.pdf)
 * [In depth guide of ggplot2](http://www.ling.upenn.edu/~joseff/avml2012/)
 * [Quick reference for ggplot2](http://sape.inf.usi.ch/quick-reference/ggplot2)
 
+## ggplot2 Teaser
+
 
 # Thanks!
-
-#### Thanks so much for attending!!
 
 
 
