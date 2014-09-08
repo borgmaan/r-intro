@@ -24,12 +24,6 @@ library(knitr)
 opts_chunk$set(results="hide", message=FALSE, fig.show="hide", fig.align="center", tidy=TRUE)
 ```
 
-*******
-
-# Disclaimer 
-
-## *Document is still a work in progress*
-
 
 *******
 
@@ -197,8 +191,7 @@ Arrays act very similar to matrices, but can have more than 2 dimensions. Here w
 [2,]   18   20   22   24
 ```
 
-We can subset arrays in matrices in the same way we did vectors, but we must be conscious of their dimensionality. For a matrix, we 
-
+We can subset arrays in matrices in the same way we did vectors, but we must be conscious of their dimensionality. For a matrix, `m`, we would access the data stored in row 2 and column 5 by typing `m[2, 5[`.
 
 #### Data Frames
 
@@ -429,18 +422,39 @@ A comprehensive guide on *R* methods of data import and export can be found [her
 
 #### Using RStudio Interface
 
-*RStudio* gives users the ability to import data with an *Excel*-style interface. This can be done by clicking the *"Import Dataset"* button in RStudio's *Environment* panel. Clicking this button will pop up a file browser 
+*RStudio* gives users the ability to import data with an *Excel*-style interface. This can be done by clicking the *"Import Dataset"* button in RStudio's *Environment* panel. Clicking this button will pop up a file browser -- navigate to the folder you downloaded and select the file `gene-exprs-long.tsv`.
 
 ![data-import](../images/import-data.png)
 
+The import screen allows you to specify a number of options detailing specifics about the data file being imported and the object that will be imported into the *R* environment. 
+
+* **Name:** allows users to specify the name of the object being imported into the *R* environment
+*  **Heading:** does the data you are importing have headers specifying the names for you columns?
+*  **Separator:** allows you to specify the *delimiter* separating columns in the data being imported (e.g. "Tab" for `.tsv`, "Comma" for `.csv`, etc.)
+* **Decimal:** what character represents the decimal in you data (comma for European data :))
+* **Quote:** what character indicates the *quote* character in your text file. Quotes are typically used to indicate a full string between delimiters 
+* **na.strings:** what set of characters in your data indicates missing data (`""`, `NA`, `999`)
+* **Strings as factors:** do you want your strings [imported as factors](http://stackoverflow.com/questions/8652694/r-use-of-factor)?
+
+![data-import-screen](../images/import-screen-1.png)
+
+You can check to see that your chosen options are importing your `data.frame` correctly by viewing the output in the *"Data Frame"* section of the *"Import Dataset"* window:
+
+![data-import-screen](../images/import-screen-2.png)
+
+After clicking import, we can see that *RStudio* has generated the necessary *R* code in the console to import the data file and that our `data.frame` object has been added to the workspace:
+
+![data-import-screen](../images/import-results.png)
 
 
 
 #### read.table/read.delim
 
-
+In the previous section, we saw *RStudio* generate a `read.delim` function to import our `.tsv` data frame. `read.delim` is a special alternative to *R*'s more general `read.table` function (`?read.table` for details). `read.table` is *R*'s workhorse function for data I/O. As you become more comfortable with *R*, it will become your *de facto* method for importing data. For now, it would be instructive to observe
 
 #### read.csv
+
+`read.csv` is another special alternative to `read.table`. They are based on the same underlying function, but `read.csv` has default arguments for reading `.csv` files. For more info, type `?read.csv` into the *R* console. 
 
 
 *******
@@ -448,13 +462,15 @@ A comprehensive guide on *R* methods of data import and export can be found [her
 
 # Basic Data Manipulation
 
-People often are surprised at the amount of time Data manipulation/munging  [data analysis](http://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html?_r=0)
+People [often are surprised](http://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html?_r=0) at the amount of time analysts spend manipulating/cleaning/munging [data analysis]
 
 ### Subsetting
 
+Oftentimes, analysts will want to work with only a subset of their data at one time. A definitive guide on subsetting in *R* can be found [here](http://adv-r.had.co.nz/Subsetting.html). There are many ways to subset data in *R*, but we'll cover the most useful here.
+
 ### Wide vs. Long Format
 
-Data analysts have come up with ways to describe the format of the data they work in. Most of the data you come into contact with will be in either [wide or long](http://en.wikipedia.org/wiki/Wide_and_narrow_data) 
+Data analysts have come up with ways to describe the format of the data they work in. Most of the data you come into contact with will be in either [wide or long](http://en.wikipedia.org/wiki/Wide_and_narrow_data) format. 
 
 
 # Basic Plotting
@@ -475,10 +491,15 @@ The [lattice package](http://cran.r-project.org/web/packages/lattice/index.html)
 
 `ggplot2` is a plotting system for *R*, based on the [grammar of graphics](http://www.amazon.com/The-Grammar-Graphics-Statistics-Computing/dp/0387245448), which tries to take the good parts of *base* and *lattice* graphics and none of the bad parts. It takes care of many of the fiddly details that make plotting a hassle (like drawing legends) as well as providing a powerful model of graphics that makes it easy to produce complex multi-layered graphics (taken from [ggplot2 site](http://ggplot2.org/)). `ggplot2` allows intro *R* users to create high quality data visualizations with little effort using an intuitive plotting syntax. 
 
-An excellent presentation with info & examples for all three systems can be found [here](http://faculty.ucr.edu/~tgirke/HTML_Presentations/Manuals/Rgraphics/Rgraphics.pdf). We'll briefly discuss how to create excellent using graphs with the `ggplot2` graphics system in the following section. 
-
+An excellent presentation with info & examples for all three systems can be found [here](http://faculty.ucr.edu/~tgirke/HTML_Presentations/Manuals/Rgraphics/Rgraphics.pdf). I would strongly suggest learning and using `ggplot2` for all of your *R* plotting needs. I'll link to some useful tutorials in the next section.
 
 ### ggplot2 for Beginners
+
+* [Nice walkthrough of using `qplot` to make complex graphics](https://github.com/echen/ggplot2-tutorial)
+* [Excellent quick overview of ggplot2](http://www.ceb-institute.org/bbs/wp-content/uploads/2011/09/handout_ggplot2.pdf)
+* [In depth guide of ggplot2](http://www.ling.upenn.edu/~joseff/avml2012/)
+* [Quick reference for ggplot2](http://sape.inf.usi.ch/quick-reference/ggplot2)
+
 
 # Thanks!
 

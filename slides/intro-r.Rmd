@@ -1,17 +1,14 @@
 ---
 title: "Introduction to R"
 author: "Andrew Borgman // VARI BBC"
-date: 
-output: ioslides_presentation
+output: 
+    ioslides_presentation
 ---
 
+<!-- excel-output.png
+excel-csv.png -->
 
 
-*******
-
-# Disclaimer 
-
-## *Document is still a work in progress*
 
 ```{r config, echo=FALSE, message=FALSE, eval=TRUE}
 library(knitr)
@@ -20,12 +17,21 @@ opts_chunk$set(results="hide", message=FALSE, fig.show="hide", fig.align="center
 
 
 
-*******
+# Disclaimer
+
+## Limitations
+
+* This short tutorial can't cover the vast *R* universe 
+* But... *R* has vibrant community supporting it! 
+* You can find endless tutorials, books, presentations, etc. on just about any aspect of *R* you want -- from beginner topics to advances matters. 
+* Goal for today:
+
+<div class="red2" class="centered">
+Give you enough *R* vocab, so you'll be able to "Google your way out" of most problems you run into
+</div>
 
 
-# External Resources
-
-Such a short tutorial cannot cover the vast *R* universe in much detail. Fortunately, one of the greatest things about *R* is the vibrant community supporting it. One can find endless tutorials, books, presentations, etc. on just about any aspect of *R* you want -- from beginner topics to advances matters. Once you have some familiarity with *R*, you'll be able to "Google your way out" of most problems you run into. Here's a small list of useful resources:
+## External Resources
 
 * [RStudio provides many online learning resources](http://www.rstudio.com/resources/training/online-learning/)
 * [And even more helpful links buried in an RStudio wiki page](https://support.rstudio.com/hc/en-us/articles/200552336-Getting-Help-with-R)
@@ -33,30 +39,28 @@ Such a short tutorial cannot cover the vast *R* universe in much detail. Fortuna
 * [StackOverflow is a great place to find answers to R programming questions](http://stackoverflow.com/questions/tagged/r)
 * [Google Developers intro to R video tutorials](https://www.youtube.com/watch?v=iffR3fWv4xw&list=PLOU2XLYxmsIK9qQfztXeybpHvru-TrqAP)
 * [Advanced R by Hadley Wickham](http://adv-r.had.co.nz/)
-	- The first few sections are excellent for beginners
-	- The rest of the book is essential for a deep understanding of *R*
+    - The first few sections are excellent for beginners
+    - The rest of the book is essential for a deep understanding of *R*
 
 
-*******
 
 
-# Brief Intro To RStudio & *R* Concepts
 
-### The *R* Console
+# Brief Intro To *RStudio* & *R* Concepts
 
-*R* was initially developed to be an *interactive* computing language -- meaning users manually enter commands into an *R* *console* to produce a result. Interactive computing is a great way to investigate data sets and perform [exploratory data analysis](http://en.wikipedia.org/wiki/Exploratory_data_analysis). This is one of the main reasons for *R*'s popularity in the scientific community. 
 
-RStudio has an *R* console running inside it:
+## The *R* Console
+
 
 ![rstudio-term](../images/rstudio-console.png)
 
-[Here's some useful tips](https://support.rstudio.com/hc/en-us/articles/200404846-Working-in-the-Console) on using the *R* console in *RStudio*.
+> [Here's some useful tips](https://support.rstudio.com/hc/en-us/articles/200404846-Working-in-the-Console) on using the *R* console in *RStudio*.
 
-*******
 
-### *R* Calculator
+## *R* Calculator
 
-In it's most basic form, the *R* console can be used as a glorified calculator. Enter the following commands into your *R* console to see it in action.
+* The *R* console can be used as a calculator
+* Enter the following commands into your *R* console to see it in action:
 
 ```{r}
 2+2
@@ -64,31 +68,32 @@ In it's most basic form, the *R* console can be used as a glorified calculator. 
 2^3
 ```
 
-It is also smart enough to understand order of operations:
+* It is also smart enough to understand order of operations:
 
 ```{r}
 2+3*4/(5+3)*15/2^2+3*4^2
 ```
+
+<div class="red2">
 But *R* can be much more than just a calculator... :)
+</div>
 
-*******
 
+# R Objects
 
-### R Objects
+## Assignment {.build}
 
-Here, we'll cover some of the basics related to using R objects. Everything that exists in *R* is known as an object. Don't worry too much about what that means for now. Focus on learning how to use *R* objects. 
-
-#### Assignment
-
-Objects in *R* are assigned to **variables**. Variables allow us to name *things* we're using in our *R* computations so they may be easily accessed and manipulated later. 
-
-Here's an example of assigning the number `3` to the variable name `x`:
+* Objects in *R* are assigned to **variables**
+    - "`<-`" is known as the assignment operator in *R*
+* Variables allow us to name *things* we're using in our *R* computations 
+    - Let's them be easily accessed and manipulated later
+* Here's an example of assigning the number `3` to the variable name `x`:
 
 ```{r}
 x <- 3
 ```
 
-`<-` is known as the assignment operator in *R*. The code chunk above would be read "x is assigned the value of three". When you type the name of a variable that has been assigned a value, *R* will typically print the assigned value:
+* When you type the name of a variable that has been assigned a value, *R* will print the assigned value
 
 ```
 > x <- 3
@@ -96,12 +101,16 @@ x <- 3
 [1] 3
 ```
 
-If you type the name of an object that does not exist, you will get an error
+## Assignment
+
+* You will get an error if you type the name of an variable that does not have an assigned object
 
 ```
 > y
 Error: object 'y' not found
 ```
+
+## Variable Names
 
 You can name your variables anything you want, but there are a few rules:
 
@@ -111,24 +120,27 @@ You can name your variables anything you want, but there are a few rules:
 
 More information on general *R* programming style can be found [here](http://r-pkgs.had.co.nz/style.html).
 
+# R Data Structures
 
-#### R Data Types
+## R Data Types
 
 Objects in *R* can be a number of different types. Here we'll discuss the three types you are most likely to encounter. 
 
 1. **Character**: character objects are letters, words, or strings.
-	- Ex: `'j'`, `'hello'`, `'treatment A'`
+    - Ex: `'j'`, `'hello'`, `'treatment A'`
 2. **Numeric**: numeric objects are integers or real numbers
-	- Ex: `1`, `550`, `3.14`
+    - Ex: `1`, `550`, `3.14`
 3. **Logical**: logical objects take the value of `TRUE` and `FALSE` and are often used to control programming flow
 
-*******
 
-### R Data Structures
+## R Data Structures
 
-An excellent comprehensive overview of the types of objects used to store data in *R* can be found [here](http://adv-r.had.co.nz/Data-structures.html). [Quick-R](http://www.statmethods.net/) also provides and excellent [quick reference](http://www.statmethods.net/input/datatypes.html). We'll briefly cover the most common of these below.
+1. Vectors
+2. Matricies/Arrays
+3. Data Frames
+4. Lists
 
-#### Vectors
+## Vectors
 
 Vectors are *R*'s most basic data structure. When we created the variable `x` in the previous section, we had actually created a *vector* of length 1. The elements contained in a vector must be of the same *type* (see prev. section). Vectors including more than one element are frequently constructed using the `c()` (concatenate) function:
 
@@ -137,6 +149,8 @@ a <- c(1,2,5.3,6,-2,4) # numeric vector
 b <- c("one","two","three") # character vector
 c <- c(TRUE,TRUE,TRUE,FALSE,TRUE,FALSE) # logical vector
 ```
+
+## Vector Data Access
 
 You can access values inside of a vector by *subsetting* it with the `[]` operators. Examples:
 
@@ -149,7 +163,7 @@ You can access values inside of a vector by *subsetting* it with the `[]` operat
 [1] "three"
 ```
 
-#### Matricies/Arrays
+## Matricies/Arrays
 
 Matrices and arrays are vectors with *dimensions*. Since they are vectors, they can only contain elements of the same *type*. Matrices have 2 dimensions (rows & columns) and are created with the `matrix` function:
 
@@ -165,28 +179,8 @@ Matrices and arrays are vectors with *dimensions*. Since they are vectors, they 
 
 Arrays act very similar to matrices, but can have more than 2 dimensions. Here we create a three dimensional array (cube of numbers):
 
-```
-> array(1:24, dim = c(2, 4, 3))
-, , 1
 
-     [,1] [,2] [,3] [,4]
-[1,]    1    3    5    7
-[2,]    2    4    6    8
-
-, , 2
-
-     [,1] [,2] [,3] [,4]
-[1,]    9   11   13   15
-[2,]   10   12   14   16
-
-, , 3
-
-     [,1] [,2] [,3] [,4]
-[1,]   17   19   21   23
-[2,]   18   20   22   24
-```
-
-We can subset arrays in matrices in the same way we did vectors, but we must be conscious of their dimensionality. For a matrix, we 
+We can subset arrays in matrices in the same way we did vectors, but we must be conscious of their dimensionality. For a matrix, `m`, we would access the data stored in row 2 and column 5 by typing `m[2, 5[`.
 
 
 #### Data Frames
@@ -217,7 +211,6 @@ Like vectors, lists are containers allowing one to store multiple *R* objects in
 person <- list(first = 'andrew', last = 'borgman', age = 25, interests = c('math', 'computers', 'biology'))
 ```
 
-*******
 
 ### R Built-In Functions
 
@@ -265,7 +258,7 @@ We see the same search results returned in the *RStudio* help pane.
 
 #### **And, if all else fails, try *Google-ing* to see if the function you seek exists!!**
 
-*******
+
 
 ### The R Workspace
 
@@ -388,14 +381,12 @@ Flat text files containing data typically have some type of special character ([
 Tab-delimited files are easily [exported from Excel](http://office.microsoft.com/en-us/excel-help/import-or-export-text-txt-or-csv-files-HP010099725.aspx) and are one of the best ways to store data in a flat text file. Tab-delimited files typically have a file extension of `.txt` or `.tsv`.
 
 ```
-id	treatment	vals
-1	Control	7.73988631317717
-2	Control	11.1459141243514
-3	Control	10.1131777328925
-4	Control	9.24964428771185
-5	Control	9.7490331495698
-6	Control	11.048533802881
-7	Control	10.8371802055362
+ID  Group   Gene1   Gene2   Gene3   Gene4
+Sample 1    Group 1 9.695   4.694   3.733   4.874
+Sample 2    Group 1 8.087   3.276   2.220   3.095
+Sample 3    Group 1 9.885   6.297   5.842   8.233
+Sample 4    Group 1 7.832   -1.286  2.594   -1.089
+Sample 5    Group 1 10.239  4.474   3.300   3.377
 ```
 
 #### Comma-Delimited Files
@@ -403,26 +394,56 @@ id	treatment	vals
 It is also very easy to export comma-delimited files [from Excel](http://office.microsoft.com/en-us/excel-help/import-or-export-text-txt-or-csv-files-HP010099725.aspx). Comma-delimited files typically have a file extension of `.csv`.
 
 ```
-"id","treatment","vals"
-1,"Control",7.73988631317717
-2,"Control",11.1459141243514
-3,"Control",10.1131777328925
-4,"Control",9.24964428771185
-5,"Control",9.7490331495698
-6,"Control",11.048533802881
-7,"Control",10.8371802055362
+"ID","Group","Gene1","Gene2","Gene3","Gene4"
+"Sample 1","Group 1",9.695,4.694,3.733,4.874
+"Sample 2","Group 1",8.087,3.276,2.220,3.095
+"Sample 3","Group 1",9.885,6.297,5.842,8.233
+"Sample 4","Group 1",7.832,-1.286,2.594,-1.089
+"Sample 5","Group 1",10.239,4.474,3.300,3.377
 ```
 
 *******
 
 
-### R Functions for Reading Data
+### R Options for Reading Data
 
 A comprehensive guide on *R* methods of data import and export can be found [here](http://cran.r-project.org/doc/manuals/r-release/R-data.html). We'll cover a few of the most useful functions used for importing and exporting data types you will most likely come across. 
 
-#### read.table
+#### Using RStudio Interface
+
+*RStudio* gives users the ability to import data with an *Excel*-style interface. This can be done by clicking the *"Import Dataset"* button in RStudio's *Environment* panel. Clicking this button will pop up a file browser -- navigate to the folder you downloaded and select the file `gene-exprs-long.tsv`.
+
+![data-import](../images/import-data.png)
+
+The import screen allows you to specify a number of options detailing specifics about the data file being imported and the object that will be imported into the *R* environment. 
+
+* **Name:** allows users to specify the name of the object being imported into the *R* environment
+*  **Heading:** does the data you are importing have headers specifying the names for you columns?
+*  **Separator:** allows you to specify the *delimiter* separating columns in the data being imported (e.g. "Tab" for `.tsv`, "Comma" for `.csv`, etc.)
+* **Decimal:** what character represents the decimal in you data (comma for European data :))
+* **Quote:** what character indicates the *quote* character in your text file. Quotes are typically used to indicate a full string between delimiters 
+* **na.strings:** what set of characters in your data indicates missing data (`""`, `NA`, `999`)
+* **Strings as factors:** do you want your strings [imported as factors](http://stackoverflow.com/questions/8652694/r-use-of-factor)?
+
+![data-import-screen](../images/import-screen-1.png)
+
+You can check to see that your chosen options are importing your `data.frame` correctly by viewing the output in the *"Data Frame"* section of the *"Import Dataset"* window:
+
+![data-import-screen](../images/import-screen-2.png)
+
+After clicking import, we can see that *RStudio* has generated the necessary *R* code in the console to import the data file and that our `data.frame` object has been added to the workspace:
+
+![data-import-screen](../images/import-results.png)
+
+
+
+#### read.table/read.delim
+
+In the previous section, we saw *RStudio* generate a `read.delim` function to import our `.tsv` data frame. `read.delim` is a special alternative to *R*'s more general `read.table` function (`?read.table` for details). `read.table` is *R*'s workhorse function for data I/O. As you become more comfortable with *R*, it will become your *de facto* method for importing data. For now, it would be instructive to observe
 
 #### read.csv
+
+`read.csv` is another special alternative to `read.table`. They are based on the same underlying function, but `read.csv` has default arguments for reading `.csv` files. For more info, type `?read.csv` into the *R* console. 
 
 
 *******
@@ -430,30 +451,51 @@ A comprehensive guide on *R* methods of data import and export can be found [her
 
 # Basic Data Manipulation
 
-People often are surprised at the amount of time Data manipulation/munging  [data analysis](http://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html?_r=0)
+People [often are surprised](http://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html?_r=0) at the amount of time analysts spend manipulating/cleaning/munging [data analysis]
 
 ### Subsetting
 
+Oftentimes, analysts will want to work with only a subset of their data at one time. A definitive guide on subsetting in *R* can be found [here](http://adv-r.had.co.nz/Subsetting.html). There are many ways to subset data in *R*, but we'll cover the most useful here.
+
 ### Wide vs. Long Format
 
-Data analysts have come up with ways to describe the format of the data they work in. Most of the data you come into contact with will be in either [wide or long](http://en.wikipedia.org/wiki/Wide_and_narrow_data) 
+Data analysts have come up with ways to describe the format of the data they work in. Most of the data you come into contact with will be in either [wide or long](http://en.wikipedia.org/wiki/Wide_and_narrow_data) format. 
 
 
 # Basic Plotting
 
+### R Graphing Systems
+
+There are three main graphing frameworks available in *R* for creating high quality plots:
+
+#### 1) Base Graphics
+
+The *base* graphics system is the original plotting framework for the *R* language. One can produce anything from very simple to infinitely complex graphics using the *base* system; however, creating simple plots with annotation elements (e.g. coloring, legends, etc) can be cumbersome for new *R* users. A good demo of some of the key features of the base graphics system [can be found here](http://rpubs.com/SusanEJohnston/7953). We will not be covering *base* graphics in this tutorial.
+
+#### 2) Lattice Graphics
+
+The [lattice package](http://cran.r-project.org/web/packages/lattice/index.html) was developed as an attempt to improve on base *R* graphics by providing better defaults and the ability to easily display multivariate relationships. Lattice graphics 
+
+#### 3) ggplot2 Graphics
+
+`ggplot2` is a plotting system for *R*, based on the [grammar of graphics](http://www.amazon.com/The-Grammar-Graphics-Statistics-Computing/dp/0387245448), which tries to take the good parts of *base* and *lattice* graphics and none of the bad parts. It takes care of many of the fiddly details that make plotting a hassle (like drawing legends) as well as providing a powerful model of graphics that makes it easy to produce complex multi-layered graphics (taken from [ggplot2 site](http://ggplot2.org/)). `ggplot2` allows intro *R* users to create high quality data visualizations with little effort using an intuitive plotting syntax. 
+
+An excellent presentation with info & examples for all three systems can be found [here](http://faculty.ucr.edu/~tgirke/HTML_Presentations/Manuals/Rgraphics/Rgraphics.pdf). I would strongly suggest learning and using `ggplot2` for all of your *R* plotting needs. I'll link to some useful tutorials in the next section.
+
+### ggplot2 for Beginners
+
+* [Nice walkthrough of using `qplot` to make complex graphics](https://github.com/echen/ggplot2-tutorial)
+* [Excellent quick overview of ggplot2](http://www.ceb-institute.org/bbs/wp-content/uploads/2011/09/handout_ggplot2.pdf)
+* [In depth guide of ggplot2](http://www.ling.upenn.edu/~joseff/avml2012/)
+* [Quick reference for ggplot2](http://sape.inf.usi.ch/quick-reference/ggplot2)
+
+
+# Thanks!
+
+#### Thanks so much for attending!!
 
 
 
 
 
 
-Below the first few rows of some data in stored [tidy](http://vita.had.co.nz/papers/tidy-data.pdf) format (more on this later). 
-
-| id|treatment |      vals|
-|--:|:---------|---------:|
-|  1|Control   |  7.739886|
-|  2|Control   | 11.145914|
-|  3|Control   | 10.113178|
-|  4|Control   |  9.249644|
-|  5|Control   |  9.749033|
-|  6|Control   | 11.048534|
