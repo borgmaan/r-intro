@@ -163,44 +163,9 @@ Objects in *R* can be a number of different types. Next, we'll discuss the three
 3. Data Frames
 4. Lists
 
-## Vectors
-
-Vectors are *R*'s most basic data structure. When we created the variable `x` in the previous section, we had actually created a *vector* of length 1. The elements contained in a vector must be of the same *type* (see prev. section). Vectors including more than one element are frequently constructed using the `c()` (concatenate) function:
-
-```{r}
-a <- c(1,2,5.3,6,-2,4) # numeric vector
-b <- c("one","two","three") # character vector
-c <- c(TRUE,TRUE,TRUE,FALSE,TRUE,FALSE) # logical vector
-```
-
-## Vector Data Access
-
-You can access values inside of a vector by *subsetting* it with the `[]` operators. Examples:
-
-```
-> a[1] # access the first element of a
-[1] 1
-> a[3] # access the fourth element of a
-[1] 5.3
-> b[length(b)] # acess the last element of b
-[1] "three"
-```
-
-## Matricies
-
-Matrices and arrays are vectors with *dimensions*. Since they are vectors, they can only contain elements of the same *type*. Matrices have 2 dimensions (rows & columns) and are created with the `matrix` function:
-
-```
-> matrix(1:25, ncol = 5, nrow = 5)
-     [,1] [,2] [,3] [,4] [,5]
-[1,]    1    6   11   16   21
-[2,]    2    7   12   17   22
-[3,]    3    8   13   18   23
-[4,]    4    9   14   19   24
-[5,]    5   10   15   20   25
-```
-
-We can subset arrays in matrices in the same way we did vectors, but we must be conscious of their dimensionality. For a matrix, `m`, we would access the data stored in row 2 and column 5 by typing `m[2, 5]`.
+<div class="red2">
+See [course handout](http://borgmaan.github.io/r-intro/lesson/intro-r.html) for more details!!
+</div>
 
 
 ## Data Frames
@@ -222,26 +187,6 @@ We can subset arrays in matrices in the same way we did vectors, but we must be 
 6   ctrl -0.76686861
 7   ctrl  0.03573818
 8   ctrl  1.69159332
-```
-
-
-## Lists
-
-* Lists are containers allowing to store multiple *R* objects in the same parent object 
-* Unlike vectors, enclosed data can have different *types* 
-* As an example, we'll create a list with some info about a person:
-
-```
-> person <- list(first = 'andrew', last = 'borgman', age = 25)
-> person
-$first
-[1] "andrew"
-
-$last
-[1] "borgman"
-
-$age
-[1] 25
 ```
 
 # Functions
@@ -266,46 +211,6 @@ $age
 
 ![rstudio-help-annot](../images/rstudio-help-annot.png)
 
-
-## R Function Documentation
-
-* Pre-*RStudio*, all of this searching took place on the command line
-* You may find this is a more convenient way to search for *R* help
-* The `help()` and `?` functions can be used to search the documentation for functions matching the inputted text
-* The following functions both search *R*'s help documentation for any functions named `mean`
-
-```{r, eval=FALSE, tidy=FALSE}
-?mean
-help(mean)
-```
-
-## R Function Documentation
-
-![rstudio-help](../images/rstudio-help.png)
-
-## R General Searching
-
-* But sometimes we don't know the name of the function we seek
-* Fortunately, *R*'s documentation search is flexible enough to accommodate that 
-* Let's try to find a function that lets us compute the standard deviation of a vector of numbers. 
-* First, we'll try a search with the name of the function used in *Excel* software
-
-```
-> ?stdev
-No documentation for ‘STDEV’ in specified packages and libraries:
-you could try ‘??STDEV’
-```
-
-## R General Searching
-
-* You'll see that *R* gives us a hint and is telling us to use the function `??`. 
-* This function works like the search box we used to find help in *RStudio*. Let's search for "standard deviation":
-
-```{r, eval=FALSE, tidy=FALSE}
-??"standard deviation"
-```
-
-Entering this, we see the same kind of search results returned in the *RStudio* help pane. 
 
 ## R General Searching
 
@@ -608,7 +513,11 @@ gene.exprs.long <- read.delim("../data/data_dl/gene-exprs-long.tsv")
 * Let's plot our gene expression data set!
 * First, a basic `qplot` call:
 
-```{r, eval = T, results='markup', fig.show='asis', fig.height = 4, fig.width = 4.5}
+```
+qplot(x = Gene, y = Expression, data = gene.exprs.long)
+```
+
+```{r, eval = T, results='markup', fig.show='asis', fig.height = 4, fig.width = 4.5, echo = F}
 qplot(x = Gene, y = Expression, data = gene.exprs.long)
 ```
 
@@ -618,7 +527,11 @@ qplot(x = Gene, y = Expression, data = gene.exprs.long)
 * You can override this to get other graphics
     - Done by specifying the `geom` option
 
-```{r, eval = T, results='markup', fig.show='asis', fig.height = 4, fig.width = 4.5}
+```
+qplot(x = Gene, y = Expression, data = gene.exprs.long, geom = 'boxplot')
+```
+
+```{r, eval = T, results='markup', fig.show='asis', fig.height = 4, fig.width = 4.5, echo = F}
 qplot(x = Gene, y = Expression, data = gene.exprs.long, geom = 'boxplot')
 ```
 
@@ -626,7 +539,11 @@ qplot(x = Gene, y = Expression, data = gene.exprs.long, geom = 'boxplot')
 
 * The `color` option adds color!
 
-```{r, eval = T, results='markup', fig.show='asis', fig.height = 4, fig.width = 4.5}
+```
+qplot(x = Gene, y = Expression, data = gene.exprs.long, color = Gene)
+```
+
+```{r, eval = T, results='markup', fig.show='asis', fig.height = 4, fig.width = 4.5, echo = F}
 qplot(x = Gene, y = Expression, data = gene.exprs.long, color = Gene)
 ```
 
@@ -634,21 +551,38 @@ qplot(x = Gene, y = Expression, data = gene.exprs.long, color = Gene)
 
 * Or `fill` for some `geom`s
 
-```{r, eval = T, results='markup', fig.show='asis', fig.height = 4, fig.width = 4.5}
+```
+qplot(x = Gene, y = Expression, data = gene.exprs.long, geom = 'boxplot', 
+      fill = Gene)
+```
+
+```{r, eval = T, results='markup', fig.show='asis', fig.height = 4, fig.width = 4.5, echo = F}
 qplot(x = Gene, y = Expression, data = gene.exprs.long, geom = 'boxplot', 
       fill = Gene)
 ```
 
 ## Or Make Some Facets
 
-```{r, eval = T, results='markup', fig.show='asis', fig.height = 4, fig.width = 4.5}
+```
+qplot(x = Group, y = Expression, data = gene.exprs.long, fill = Group, 
+      facets = ~ Gene, geom = 'boxplot')
+```
+
+```{r, eval = T, results='markup', fig.show='asis', fig.height = 4, fig.width = 4.5, echo = F}
 qplot(x = Group, y = Expression, data = gene.exprs.long, fill = Group, 
       facets = ~ Gene, geom = 'boxplot')
 ```
 
 ## Or Make Some Facets & Make It Pretty
 
-```{r, eval = T, results='markup', fig.show='asis', fig.height = 4, fig.width = 4.5}
+```
+qplot(x = Group, y = Expression, data = gene.exprs.long, color = Group, 
+    facets = ~Gene, geom = "jitter") + theme_bw() + 
+    scale_color_brewer(type = 'qual', palette = "Dark2") + 
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+```{r, eval = T, results='markup', fig.show='asis', fig.height = 4, fig.width = 4.5, echo = F}
 qplot(x = Group, y = Expression, data = gene.exprs.long, color = Group, 
     facets = ~Gene, geom = "jitter") + theme_bw() + 
     scale_color_brewer(type = 'qual', palette = "Dark2") + 
