@@ -16,13 +16,36 @@ library(knitr)
 opts_chunk$set(results="hide", message=FALSE, fig.show="hide", fig.align="center", tidy=TRUE, eval = F)
 ```
 
+## Outline
 
+* What is *R*?
+* Brief Intro To *RStudio* & *R* Concepts
+* *R* Objects
+* The *R* Workspace
+* *R* Packages
+* Getting Data Into *R*
+* Basic Plotting
+
+
+# What is *R*?
+
+## What is *R*?
+
+* First and foremost, a fully functional programming language
+* Originally developed @ Bell Labs for interactive data analysis
+    - Was called *S* back then (~1976)
+* Open sourced in 1993 under the name *R*
+    - Designed to be "not unlike *S*"
+* Strong emphasis on statistics
+* Excellent for data visualization
+* Gaining popularity in many circles 
 
 # Disclaimer
 
 ## Limitations
 
 * This short tutorial can't cover the vast *R* universe 
+    - (or even come close :))
 * But... *R* has vibrant community supporting it! 
 * You can find endless tutorials, books, presentations, etc. on just about any aspect of *R* you want -- from beginner topics to advanced matters. 
 * Goal for today:
@@ -45,17 +68,13 @@ Give you enough *R* vocab, so you'll be able to *"Google your way out"* of most 
 
 
 
-
-
 # Brief Intro To *RStudio* & *R* Concepts
 
 
-## The *R* Console
+## The *R* Console | [Here's some useful tips](https://support.rstudio.com/hc/en-us/articles/200404846-Working-in-the-Console) on using the *R* console in *RStudio*.
 
 
 ![rstudio-term](../images/rstudio-console.png)
-
-> [Here's some useful tips](https://support.rstudio.com/hc/en-us/articles/200404846-Working-in-the-Console) on using the *R* console in *RStudio*.
 
 
 ## *R* Calculator
@@ -364,6 +383,8 @@ You can also use a button in *RStudio*'s *Environment* panel to remove all of th
 
 ![clear](../images/clear.png)
 
+
+# R Packages
 
 ## R Packages
 
