@@ -400,6 +400,14 @@ Sample 4    Group 1 7.832   -1.286  2.594   -1.089
 Sample 5    Group 1 10.239  4.474   3.300   3.377
 ```
 
+#### Exporting TSV from Excel
+
+`File -> Save As -> Tab-Delimited Text`
+
+![excel-tsv](../images/excel-output.png)
+
+
+
 #### Comma-Delimited Files
 
 It is also very easy to export comma-delimited files [from Excel](http://office.microsoft.com/en-us/excel-help/import-or-export-text-txt-or-csv-files-HP010099725.aspx). Comma-delimited files typically have a file extension of `.csv`.
@@ -412,6 +420,15 @@ It is also very easy to export comma-delimited files [from Excel](http://office.
 "Sample 4","Group 1",7.832,-1.286,2.594,-1.089
 "Sample 5","Group 1",10.239,4.474,3.300,3.377
 ```
+
+#### Exporting CSV from Excel
+
+`File -> Save As -> Comma Separated Values`
+
+![excel-csv](../images/excel-csv.png)
+
+
+
 
 *******
 

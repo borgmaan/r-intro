@@ -51,7 +51,7 @@ opts_chunk$set(results="hide", message=FALSE, fig.show="hide", fig.align="center
 * Goal for today:
 
 <div class="red2" class="centered">
-Give you enough *R* vocab, so you'll be able to *"Google your way out"* of most problems you run into
+Give you enough *R* familiarity, so you'll be able to *"Google your way out"* of most problems you run into
 </div>
 
 
@@ -309,7 +309,7 @@ Entering this, we see the same kind of search results returned in the *RStudio* 
 
 ## R General Searching
 
-### **And, if all else fails, try *Googleing* to see if the function you seek exists!!**
+### **And, if all else fails, try *Googling* to see if the function you seek exists!!**
 
 
 
@@ -406,6 +406,11 @@ install.packages("ggplot2")
 library(ggplot2)
 ```
 
+---
+
+![sleep](../images/sleeping-student.jpg)
+
+
 
 # Getting Data Into R
 
@@ -418,70 +423,44 @@ Now that we're feeling a bit more comfortable with the *R* environment, we'll ex
 
 * <a href="https://github.com/borgmaan/r-intro/blob/master/data/data_dl.zip?raw=true" target="_blank">data_dl.zip</a>
 
+
 ## Data Storage File types
 
-The easiest way to store data for import into *R* is in text files. R has facilities for importing data directly from Excel spreadsheets or from some data base format, but such performing such operations is outside the scope of this course. 
-
-Flat text files containing data typically have some type of special character ([delimiter](http://en.wikipedia.org/wiki/Delimiter-separated_values)) -- think: tab, semicolon, space -- for separating different columns of data. Data stored in text files most commonly falls into the following formats.
-
-
-## Tab-Delimited Files
-
-* Tab-delimited files are easily exported from Excel
-* One of the best ways to store data in a flat text file 
-* Typically have a file extension of `.txt` or `.tsv`.
-
-```
-ID  Group   Gene1   Gene2   Gene3   Gene4
-Sample 1    Group 1 9.695   4.694   3.733   4.874
-Sample 2    Group 1 8.087   3.276   2.220   3.095
-Sample 3    Group 1 9.885   6.297   5.842   8.233
-Sample 4    Group 1 7.832   -1.286  2.594   -1.089
-Sample 5    Group 1 10.239  4.474   3.300   3.377
-```
-
-## Tab-Delimited Files
-
-![excel-tsv](../images/excel-output.png)
-
-`File -> Save As -> Tab-Delimited Text`
+* Easiest way to store data for import into *R* is in flat text files. 
+* Can import from other data stores (Excel sheet, database, etc)
+    - But that is out of the scope of this tutorial
+* Flat text files containing data typically have a column separator ([delimiter](http://en.wikipedia.org/wiki/Delimiter-separated_values)) 
+    - think: tab, semicolon, space 
+* Two easy ones to export from Excel are (see handout for examples):
+    - Tab-Delimited Files
+    - Comma-Delimited Files
 
 
-## Comma-Delimited Files
 
-* It is also very easy to export comma-delimited files from Excel
-* Comma-delimited files typically have a file extension of `.csv`.
+<!-- Removed file descriptors -->
 
-```
-"ID","Group","Gene1","Gene2","Gene3","Gene4"
-"Sample 1","Group 1",9.695,4.694,3.733,4.874
-"Sample 2","Group 1",8.087,3.276,2.220,3.095
-"Sample 3","Group 1",9.885,6.297,5.842,8.233
-"Sample 4","Group 1",7.832,-1.286,2.594,-1.089
-"Sample 5","Group 1",10.239,4.474,3.300,3.377
-```
+# Let's actually do something!
 
-## Comma-Delimited Files
-
-![excel-csv](../images/excel-csv.png)
-
-`File -> Save As -> Comma Separated Values`
 
 ## Importing Data with RStudio
 
 ![data-import](../images/import-data.png)
 
+
 ## Using RStudio Import Interface
 
 ![data-import-screen](../images/import-screen-1.png)
+
 
 ## Using RStudio Import Interface
 
 ![data-import-screen](../images/import-screen-2.png)
 
+
 ## Using RStudio Import Interface
 
 ![data-import-screen](../images/import-results.png)
+
 
 ## read.table/read.delim/read.csv
 
@@ -546,13 +525,32 @@ Sample 5    Group 1 10.239  4.474   3.300   3.377
 46 Sample 46 Group 5 Gene1   10.11114
 ```
 
+## *subset* Function
+
+* This can be useful for stats when you are just starting out:
+
+```
+> gene1 <- subset(gene.exprs.long, Gene == 'Gene1') # only data for gene 1
+> summary(aov(Expression ~ Group, data = gene1)) # run an ANOVA on it
+            Df Sum Sq Mean Sq F value  Pr(>F)   
+Group        4  13.08   3.271   4.879 0.00236 **
+Residuals   45  30.17   0.670                   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+```
+
+<div class="red2">
+Look! *R* prints stars!! ;)
+</div>
 
 ## Wide vs. Long Format
 
 * Data analysts have come up with ways to describe the format of the data they work in 
 * Most of the data you come into contact with will be in either [wide or long](http://en.wikipedia.org/wiki/Wide_and_narrow_data) format
 * See data files in example zip folder for wide and long versions of same data set
-* 
+* The [reshape2 package](http://cran.r-project.org/web/packages/reshape2/index.html) is good for going from wide to long and back 
+    - here's a [good tutorial](http://seananderson.ca/2013/10/19/reshape.html)
+* Keeping your data in *long* format will make your life in *R* easier!
 
 
 # Basic Plotting
@@ -565,11 +563,17 @@ There are three main graphing frameworks available in *R* for creating high qual
 2. Lattice Graphics
 3. ggplot2 Graphics
 
-**I would suggest learning `ggplot2`**
+<div class='red2'>
+**I would suggest learning `ggplot2`!**
+</div>
 
 ## ggplot2 Graphics
 
-`ggplot2` is a plotting system for *R*, based on the [grammar of graphics](http://www.amazon.com/The-Grammar-Graphics-Statistics-Computing/dp/0387245448), which tries to take the good parts of *base* and *lattice* graphics and none of the bad parts. It takes care of many of the fiddly details that make plotting a hassle (like drawing legends) as well as providing a powerful model of graphics that makes it easy to produce complex multi-layered graphics (taken from [ggplot2 site](http://ggplot2.org/)). `ggplot2` allows intro *R* users to create high quality data visualizations with little effort using an intuitive plotting syntax. 
+`ggplot2` allows intro *R* users to create high quality data visualizations with little effort using an intuitive plotting syntax:
+
+<blockquote>
+    `ggplot2` is a plotting system for *R*, based on the [grammar of graphics](http://www.amazon.com/The-Grammar-Graphics-Statistics-Computing/dp/0387245448), which tries to take the good parts of *base* and *lattice* graphics and none of the bad parts. It takes care of many of the fiddly details that make plotting a hassle (like drawing legends) as well as providing a powerful model of graphics that makes it easy to produce complex multi-layered graphics (taken from [ggplot2 site](http://ggplot2.org/)). 
+</blockquote>
 
 
 ## ggplot2 for Beginners
@@ -579,8 +583,74 @@ There are three main graphing frameworks available in *R* for creating high qual
 * [In depth guide of ggplot2](http://www.ling.upenn.edu/~joseff/avml2012/)
 * [Quick reference for ggplot2](http://sape.inf.usi.ch/quick-reference/ggplot2)
 
-## ggplot2 Teaser
+## qplot() Usage
 
+* `qplot()` is the easiest way to get started with `ggplot2`
+* If you haven't done so already, please run the following commands:
+
+```{r, eval=FALSE}
+# Install only once.
+install.packages("ggplot2")
+
+# Load the package every time you want to use it.
+library(ggplot2)
+```
+
+## qplot() Usage
+
+```{r, include = F, eval = T}
+library(ggplot2)
+gene.exprs.long <- read.delim("../data/data_dl/gene-exprs-long.tsv")
+```
+
+* Let's plot our gene expression data set!
+* First, a basic `qplot` call:
+
+```{r, eval = T, results='markup', fig.show='asis'}
+qplot(x = Gene, y = Expression, data = gene.exprs.long)
+```
+
+## Change the Plot Type!
+
+* `qplot` guesses what the best graphical display would be given your data
+* You can override this to get other graphics
+    - Done by specifying the `geom` option
+
+```{r, eval = T, results='markup', fig.show='asis', fig.height = 4, fig.width = 4.5}
+qplot(x = Gene, y = Expression, data = gene.exprs.long, geom = 'boxplot')
+```
+
+## Add Some Color
+
+* The `color` option adds color!
+
+```{r, eval = T, results='markup', fig.show='asis', fig.height = 4, fig.width = 4.5}
+qplot(x = Gene, y = Expression, data = gene.exprs.long, color = Gene)
+```
+
+## Add Some Color
+
+* Or `fill` for some `geom`s
+
+```{r, eval = T, results='markup', fig.show='asis', fig.height = 4, fig.width = 4.5}
+qplot(x = Gene, y = Expression, data = gene.exprs.long, geom = 'boxplot', fill = Gene)
+```
+
+## Or Make Some Facets
+
+```{r, eval = T, results='markup', fig.show='asis', fig.height = 4, fig.width = 4.5}
+qplot(x = Group, y = Expression, data = gene.exprs.long, fill = Group, facets = ~ Gene, geom = 'boxplot')
+```
+
+## Or Make Some Facets & Make It Pretty
+
+```{r, eval = T, results='markup', fig.show='asis', fig.height = 4, fig.width = 4.5}
+qplot(x = Group, y = Expression, data = gene.exprs.long, color = Group, facets = ~ Gene, geom = 'jitter') + theme_bw()
+```
+
+
+
+# Thanks!
 
 # Thanks!
 
@@ -589,3 +659,44 @@ There are three main graphing frameworks available in *R* for creating high qual
 
 
 
+## Tab-Delimited Files
+
+* Tab-delimited files are easily exported from Excel
+* One of the best ways to store data in a flat text file 
+* Typically have a file extension of `.txt` or `.tsv`.
+
+```
+ID  Group   Gene1   Gene2   Gene3   Gene4
+Sample 1    Group 1 9.695   4.694   3.733   4.874
+Sample 2    Group 1 8.087   3.276   2.220   3.095
+Sample 3    Group 1 9.885   6.297   5.842   8.233
+Sample 4    Group 1 7.832   -1.286  2.594   -1.089
+Sample 5    Group 1 10.239  4.474   3.300   3.377
+```
+
+## Tab-Delimited Files
+
+![excel-tsv](../images/excel-output.png)
+
+`File -> Save As -> Tab-Delimited Text`
+
+
+## Comma-Delimited Files
+
+* It is also very easy to export comma-delimited files from Excel
+* Comma-delimited files typically have a file extension of `.csv`.
+
+```
+"ID","Group","Gene1","Gene2","Gene3","Gene4"
+"Sample 1","Group 1",9.695,4.694,3.733,4.874
+"Sample 2","Group 1",8.087,3.276,2.220,3.095
+"Sample 3","Group 1",9.885,6.297,5.842,8.233
+"Sample 4","Group 1",7.832,-1.286,2.594,-1.089
+"Sample 5","Group 1",10.239,4.474,3.300,3.377
+```
+
+## Comma-Delimited Files
+
+![excel-csv](../images/excel-csv.png)
+
+`File -> Save As -> Comma Separated Values`

@@ -1,4 +1,9 @@
 
+blockquote {
+  font-style: italic;
+  margin-left: 32px;
+  font-family: Georgia, "Times New Roman", serif;
+}
 
 pre {
 	color: #515151;
